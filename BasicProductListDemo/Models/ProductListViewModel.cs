@@ -1,4 +1,4 @@
-﻿using ProductListMVCDemo.Classes.Products;
+﻿using ProductListMVCDemo.Objects.Products;
 using ProductListMVCDemo.Objects.DAL;
 using System;
 using System.Collections.Generic;
@@ -9,7 +9,7 @@ namespace ProductListMVCDemo.Models
 {
     public class ProductListViewModel
     {
-        public ProductListContext ProductContext{ get; set; }
+        public List<ProductBase> AllProducts { get; set; }
 
         public ProductBase MostExpensiveProduct { get; set; }
 
@@ -22,13 +22,13 @@ namespace ProductListMVCDemo.Models
         public static ProductListViewModel GetModel(ProductListContext productContext)
         {
             ProductListViewModel model = new ProductListViewModel();
+            List<ProductBase> allProductsList = productContext.AllProducts.ToList();
 
             // Get products in a single list to find min/max values
-            IQueryable<ProductBase> allProducts = productContext.GetAllProducts();
-            IEnumerable<ProductBase> allProductsOrderedByPrice = allProducts.OrderBy(p => p.Price);
-            IEnumerable<ProductBase> allProductsOrderedByQuantity = allProducts.OrderBy(p => p.Quantity);
+            IEnumerable<ProductBase> allProductsOrderedByPrice = allProductsList.OrderBy(p => p.Price);
+            IEnumerable<ProductBase> allProductsOrderedByQuantity = allProductsList.OrderBy(p => p.Quantity);
 
-            model.ProductContext = productContext;
+            model.AllProducts = allProductsList;
             model.MostExpensiveProduct = allProductsOrderedByPrice.FirstOrDefault();
             model.LeastExpensiveProduct = allProductsOrderedByPrice.LastOrDefault();
             model.MostQuantityProduct = allProductsOrderedByQuantity.FirstOrDefault();

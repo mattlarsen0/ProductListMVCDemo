@@ -1,0 +1,14 @@
+﻿@model BasicProductListDemo.Models.AddUpdateProductViewModel
+
+@{
+    ViewBag.Title = "AddProduct";
+}
+
+@if (Model.IsUpdate)
+{
+
+}
+else
+{
+    Html.RenderPartial("_AddProduct");
+}

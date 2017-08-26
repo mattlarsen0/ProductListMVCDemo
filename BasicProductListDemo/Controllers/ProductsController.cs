@@ -1,4 +1,5 @@
-﻿using ProductListMVCDemo.Models;
+﻿using BasicProductListDemo.Models;
+using ProductListMVCDemo.Models;
 using ProductListMVCDemo.Objects.DAL;
 using System;
 using System.Collections.Generic;
@@ -18,6 +19,12 @@ namespace ProductListMVCDemo.Controllers
             ProductListViewModel model = ProductListViewModel.GetModel(productsContext);
 
             return View(model);
+        }
+
+        public ViewResult AddUpdateProduct(AddUpdateProductModel model)
+        {
+            AddUpdateProductViewModel viewModel = new AddUpdateProductViewModel();
+            return View(viewModel);
         }
     }
 }

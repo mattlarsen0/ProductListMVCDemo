@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
 
-namespace ProductListMVCDemo.Classes.Products
+namespace ProductListMVCDemo.Objects.Products
 {
     public class CarProduct : ProductBase
     {

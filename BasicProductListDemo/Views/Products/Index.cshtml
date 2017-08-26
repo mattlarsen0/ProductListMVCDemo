@@ -1,4 +1,5 @@
 ﻿@model ProductListMVCDemo.Models.ProductListViewModel
+@using ProductListMVCDemo.Objects.Products;
 @{
     Layout = null;
 }
@@ -6,10 +7,12 @@
 <div>
     Current Products:
     <table>
-        @foreach (var x in model)
+        @foreach (ProductBase product in Model.AllProducts)
         {
-            <tr></tr>
+            <tr>
+                <td>@product.Name</td>
+            </tr>
         }
     </table>
-    
+    @Html.ActionLink("Add Product", "AddProduct")
 </div>
