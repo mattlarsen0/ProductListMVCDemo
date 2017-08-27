@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using BasicProductListDemo.Objects;
 
 namespace ProductListMVCDemo.Models
 {
@@ -19,7 +20,17 @@ namespace ProductListMVCDemo.Models
 
         public ProductBase LeastQuantityProduct { get; set; }
 
-        public static ProductListViewModel GetModel(ProductListContext productContext)
+        public bool IsError { get; private set; }
+        public string Message { get; private set; }
+
+        /// <summary>
+        /// Gets the view model for the main product list
+        /// </summary>
+        /// <param name="productContext">Database context for products</param>
+        /// <param name="addedProduct">If true, a success message will be shown. Set this to true when adding a product and redirecting to this list</param>
+        /// <param name="errorMessage">If set, an error message will be displayed</param>
+        /// <returns>The generated view model</returns>
+        public static ProductListViewModel GetModel(ProductListContext productContext, bool addedProduct = false, string errorMessage = null)
         {
             ProductListViewModel model = new ProductListViewModel();
             List<ProductBase> allProductsList = productContext.AllProducts.ToList();
@@ -33,6 +44,17 @@ namespace ProductListMVCDemo.Models
             model.LeastExpensiveProduct = allProductsOrderedByPrice.LastOrDefault();
             model.MostQuantityProduct = allProductsOrderedByQuantity.FirstOrDefault();
             model.LeastQuantityProduct = allProductsOrderedByQuantity.LastOrDefault();
+            model.IsError = false;
+
+            if (addedProduct)
+            {
+                model.Message = General.AddedProductSuccess;
+            }
+            else
+            {
+                model.IsError = true;
+                model.Message = errorMessage;
+            }
 
             return model;
         }

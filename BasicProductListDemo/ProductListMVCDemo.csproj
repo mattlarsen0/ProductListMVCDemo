@@ -156,10 +156,25 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Models\AddGameProductModel.cs" />
+    <Compile Include="Models\AddProductBaseModel.cs" />
     <Compile Include="Models\AddUpdateProductModel.cs" />
     <Compile Include="Models\AddUpdateProductViewModel.cs" />
+    <Compile Include="Models\IActionModel.cs" />
     <Compile Include="Objects\DAL\ProductListContext.cs" />
     <Compile Include="Objects\Enums\GameProductType.cs" />
+    <Compile Include="Objects\Enums\ProductType.cs" />
+    <Compile Include="Objects\Errors.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Errors.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Objects\General.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>General.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Objects\Internal\ErrorLog.cs" />
     <Compile Include="Objects\Products\GameProduct.cs" />
     <Compile Include="Objects\Products\ProductBase.cs" />
     <Compile Include="Objects\Products\CarProduct.cs" />
@@ -206,6 +221,16 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Products\_AddProduct.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Objects\Errors.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Errors.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Objects\General.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>General.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

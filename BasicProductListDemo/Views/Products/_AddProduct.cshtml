@@ -1,12 +1,14 @@
-﻿<h2>Add Product</h2>
+﻿@model ProductListMVCDemo.Models.AddUpdateProductViewModel
+<h2>Add Product</h2>
 
 <div>
     @using (Html.BeginForm("AddProduct", "Products"))
     {
-        @Html.TextBox("Test")
-        <label>Name:<input type="text" /></label>
-        <label>Price:<input type="text" /></label>
-        <label>Quantity:<input type="text" /></label>
+        <label>Name:<input id="Name" type="text" /></label>
+        <label>Price:<input id="Price" type="text" /></label>
+        <label>Quantity:<input id="Quantity" type="text" /></label>
+
+        if (Model.P)
 
         <input type="submit" />
     }

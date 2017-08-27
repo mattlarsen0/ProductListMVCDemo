@@ -1,33 +1,40 @@
 ﻿using ProductListMVCDemo.Objects;
-using ProductListMVCDemo.Objects.Enums;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
 
 namespace ProductListMVCDemo.Models
 {
-    public class AddUpdateProductModel : IActionModel
+    public class AddProductBaseModel : IActionModel
     {
-        public int? ProductID { get; set; }
-
-        [EnumDataType(typeof(ProductType))]
-        public ProductType ProductType { get; set; }
+        public string Name { get; set; }
+        public decimal Price { get; set; }
+        public int Quantity { get; set; }
 
         /// <summary>
         /// Validates an action's model to ensure that data is correct
         /// </summary>
         /// <param name="errorMessage">Error message to be displayed to the user. Only set when model is invalid</param>
         /// <returns>True if the model is valid, False otherwise</returns>
-        public bool IsValid(out string errorMessage)
+        public virtual bool IsValid(out string errorMessage)
         {
             bool isValid = true;
             errorMessage = null;
 
-            if (ProductID.HasValue && ProductID <= 0)
+            if (Name == null)
             {
-                errorMessage = Errors.CannotFindProduct;
+                errorMessage = Errors.GenericMVCValidationError;
+                isValid = false;
+            }
+            else if (Price < 0)
+            {
+                errorMessage = Errors.ProductsNegativePrice;
+                isValid = false;
+            }
+            else if (Quantity < 0)
+            {
+                errorMessage = Errors.ProductsNegativeQuantity;
                 isValid = false;
             }
 
