@@ -1,38 +1,30 @@
 ﻿@model ProductListMVCDemo.Models.AddUpdateProductViewModel
 @using ProductListMVCDemo.Objects.Enums;
-<h2>Add Product</h2>
 
-<div>
-    <div class="errorMsg">
-        @Model.ErrorMessage
-    </div>
-    @{ 
-        string addProductAction = null;
-        switch (Model.ProductType)
-        {
-            case ProductType.Game:
-                addProductAction = "AddGameProduct";
-                break;
-            case ProductType.Car:
-                addProductAction = "AddCarProduct";
-                break;
-        }
-    }
-    @using (Html.BeginForm(addProductAction, "Products"))
+<h2>Add @Model.ProductTypeStr</h2>
+
+<div class="addProduct">
+    @if (!string.IsNullOrEmpty(Model.ErrorMessage))
     {
-        <div>
+        <div class="errorMsg">
+            @Model.ErrorMessage
+        </div>
+    }   
+    @using (Html.BeginForm(Model.AddProductAction, "Products"))
+    {
+        <div class="inputOption">
             <label>Name:<input name="Name" type="text" /></label>
         </div>
-        <div>
+        <div class="inputOption shortNum">
             <label>Price:<input name="Price" type="text" /></label>
         </div>
-        <div>
+        <div class="inputOption shortNum">
             <label>Quantity:<input name="Quantity" type="text" /></label>
         </div>
         switch (Model.ProductType)
         {
             case ProductType.Game:
-                <div>
+                <div class="inputOption">
                     <label>
                         Game Type:
                         <select name="GameType">
@@ -41,24 +33,24 @@
                         </select>
                     </label>
                 </div>
-                <div>
+                <div class="inputOption shortNum">
                     <label>Year of Release:<input name="YearOfRelease" type="text" /></label>
                 </div>
-                <div>
+                <div class="inputOption shortNum">
                     <label>Recommended Age:<input name="RecommendedAge" type="text" /></label>
                 </div>
                 break;
             case ProductType.Car:
-                <div>
+                <div class="inputOption shortNum">
                     <label>Year:<input name="Year" type="text" /></label>
                 </div>
-                <div>
+                <div class="inputOption">
                     <label>Color:<input name="Color" type="text" /></label>
                 </div>
                 break;
         }
-
-        <input type="submit" /><a href="~/">Back</a>
+        <a class="button" href="~/">Back</a>
+        <input type="submit" />
     }
 </div>
 

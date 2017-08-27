@@ -4,6 +4,7 @@
 @if (Model.AllProducts.Count > 0)
 {
     <tr>
+        <th>Type</th>
         <th>Name</th>
         <th>Price</th>
         <th>Quantity</th>
@@ -13,6 +14,7 @@
     foreach (ProductBase product in Model.AllProducts)
     {
         <tr>
+            <td>@product.GetProductTypeString()</td>
             <td>@product.Name</td>
             <td>@product.Price</td>
             <td>@product.Quantity</td>

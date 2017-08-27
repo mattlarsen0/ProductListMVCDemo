@@ -17,6 +17,10 @@ namespace ProductListMVCDemo.Models
 
         public string ErrorMessage { get; set; }
 
+        public string ProductTypeStr { get; set; }
+
+        public string AddProductAction { get; set; }
+
         /// <summary>
         /// Creates the view model for the add/update product page.
         /// </summary>
@@ -32,6 +36,18 @@ namespace ProductListMVCDemo.Models
             model.Product = product;
             model.ProductType = productType;
             model.ErrorMessage = errorMessage;
+
+            switch (model.ProductType)
+            {
+                case ProductType.Game:
+                    model.AddProductAction = "AddGameProduct";
+                    model.ProductTypeStr = "Game";
+                    break;
+                case ProductType.Car:
+                    model.AddProductAction = "AddCarProduct";
+                    model.ProductTypeStr = "Car";
+                    break;
+            }
 
             return model;
         }

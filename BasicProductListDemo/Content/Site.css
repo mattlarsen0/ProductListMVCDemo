@@ -2,14 +2,10 @@
     padding: 0 20px;
 }
 
-input {
-    max-width: 200px;
-}
-
 .dataTable {
     background: #76C9FF;
     border-collapse: collapse;
-    border: 1px solid black;
+    border: 1px solid #000;
 }
 
 .dataTable tr{
@@ -18,12 +14,12 @@ input {
 
 .dataTable td {
     padding: 5px 10px;
-    border: 1px solid black;
+    border: 1px solid #000;
 }
 
 .dataTable th {
     padding: 12px 8px;
-    border: 1px solid black;
+    border: 1px solid #000;
 }
 
 .dataTable tr:nth-child(even) {
@@ -53,4 +49,56 @@ input {
 
 .removeItem {
     text-align: center;
+}
+
+.addProduct .inputOption {
+    margin: 10px 0;
+}
+
+.addProduct .inputOption input {
+    margin-left: 10px;
+}
+
+.addProduct .inputOption.shortNum input {
+    width: 50px;
+}
+
+a.button, input[type=button], input[type=submit] {
+    height: 35px;
+    line-height: 13px;
+    font-size: 15px;
+    min-width: 100px;
+    border: 1px solid #000;
+    display: inline-block;
+    vertical-align: middle;
+    text-align: center;
+    padding: 10px;
+    margin: 5px;
+    box-sizing: border-box;
+    background: #61d3ff;
+    text-decoration: none;
+    cursor: pointer;
+    border-radius: 3px;
+}
+
+a.button:hover, input[type=button]:hover, input[type=submit]:hover {
+    background: #10abe5;
+}
+
+a .button:link {
+    cursor: auto;
+}
+
+a.button:visited {
+    text-decoration: inherit;
+    color: inherit;
+    cursor: auto;
+}
+
+.errorMsg {
+    background: #ff3d3d;
+    border: 1px solid #000;
+    display: inline-block;
+    padding: 10px;
+    color: #000;
 }

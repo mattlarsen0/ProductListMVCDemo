@@ -94,7 +94,8 @@ namespace ProductListMVCDemo.Controllers
             try
             {
                 if (model.IsValid(out errorMessage))
-                { 
+                {
+                    model.Price = Math.Round(model.Price, 2);
                     using (ProductListContext productContext = new ProductListContext())
                     {
                         productContext.AddGameProduct(model.Name,
@@ -151,6 +152,7 @@ namespace ProductListMVCDemo.Controllers
             {
                 if (model.IsValid(out errorMessage))
                 {
+                    model.Price = Math.Round(model.Price, 2);
                     using (ProductListContext productContext = new ProductListContext())
                     {
                         productContext.AddCarProduct(model.Name,

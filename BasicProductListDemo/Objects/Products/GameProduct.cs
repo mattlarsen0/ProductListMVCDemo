@@ -10,6 +10,8 @@ namespace ProductListMVCDemo.Objects.Products
 {
     public class GameProduct : ProductBase
     {
+        private const string ProductTypeString = "Car";
+
         [Required]
         public GameProductType GameType { get; set; }
 
@@ -40,6 +42,11 @@ namespace ProductListMVCDemo.Objects.Products
             infoSb.Append("+");
 
             return infoSb.ToString();
+        }
+
+        public override string GetProductTypeString()
+        {
+            return ProductTypeString;
         }
     }
 }

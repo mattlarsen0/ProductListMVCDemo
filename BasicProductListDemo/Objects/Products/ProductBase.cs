@@ -30,5 +30,10 @@ namespace ProductListMVCDemo.Objects.Products
         {
             return string.Empty;
         }
+
+        public virtual string GetProductTypeString()
+        {
+            return string.Empty;
+        }
     }
 }

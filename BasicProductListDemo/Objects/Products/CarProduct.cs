@@ -8,6 +8,8 @@ namespace ProductListMVCDemo.Objects.Products
 {
     public class CarProduct : ProductBase
     {
+        private const string ProductTypeString = "Car";
+
         [Required]
         public int Year { get; set; }
 
@@ -17,6 +19,11 @@ namespace ProductListMVCDemo.Objects.Products
         public override string GetAdditionalInformation()
         {
             return Year + ", " + Color;
+        }
+
+        public override string GetProductTypeString()
+        {
+            return ProductTypeString;
         }
     }
 }
