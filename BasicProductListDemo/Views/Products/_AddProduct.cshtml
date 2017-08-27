@@ -1,16 +1,64 @@
 ﻿@model ProductListMVCDemo.Models.AddUpdateProductViewModel
+@using ProductListMVCDemo.Objects.Enums;
 <h2>Add Product</h2>
 
 <div>
-    @using (Html.BeginForm("AddProduct", "Products"))
+    <div class="errorMsg">
+        @Model.ErrorMessage
+    </div>
+    @{ 
+        string addProductAction = null;
+        switch (Model.ProductType)
+        {
+            case ProductType.Game:
+                addProductAction = "AddGameProduct";
+                break;
+            case ProductType.Car:
+                addProductAction = "AddCarProduct";
+                break;
+        }
+    }
+    @using (Html.BeginForm(addProductAction, "Products"))
     {
-        <label>Name:<input id="Name" type="text" /></label>
-        <label>Price:<input id="Price" type="text" /></label>
-        <label>Quantity:<input id="Quantity" type="text" /></label>
+        <div>
+            <label>Name:<input name="Name" type="text" /></label>
+        </div>
+        <div>
+            <label>Price:<input name="Price" type="text" /></label>
+        </div>
+        <div>
+            <label>Quantity:<input name="Quantity" type="text" /></label>
+        </div>
+        switch (Model.ProductType)
+        {
+            case ProductType.Game:
+                <div>
+                    <label>
+                        Game Type:
+                        <select name="GameType">
+                            <option value="@GameProductType.VideoGame">Video Game</option>
+                            <option value="@GameProductType.BoardGame">Board Game</option>
+                        </select>
+                    </label>
+                </div>
+                <div>
+                    <label>Year of Release:<input name="YearOfRelease" type="text" /></label>
+                </div>
+                <div>
+                    <label>Recommended Age:<input name="RecommendedAge" type="text" /></label>
+                </div>
+                break;
+            case ProductType.Car:
+                <div>
+                    <label>Year:<input name="Year" type="text" /></label>
+                </div>
+                <div>
+                    <label>Color:<input name="Color" type="text" /></label>
+                </div>
+                break;
+        }
 
-        if (Model.P)
-
-        <input type="submit" />
+        <input type="submit" /><a href="~/">Back</a>
     }
 </div>
 

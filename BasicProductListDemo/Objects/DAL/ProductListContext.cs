@@ -1,10 +1,10 @@
-﻿using ProductListMVCDemo.Objects.Products;
+﻿using ProductListMVCDemo.Objects.Enums;
+using ProductListMVCDemo.Objects.Products;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
 using System.Web;
-using ProductListMVCDemo.Objects.Enums;
 
 namespace ProductListMVCDemo.Objects.DAL
 {
@@ -20,7 +20,7 @@ namespace ProductListMVCDemo.Objects.DAL
 
         public DbSet<ProductBase> AllProducts { get; set; }
 
-        public void AddGameProduct(string name, decimal price, int quantity, GameProductType gameType, int yearOfRelease, int reccomendedAge)
+        public void AddGameProduct(string name, decimal price, int quantity, GameProductType gameType, int yearOfRelease, int RecommendedAge)
         {
             GameProduct newProduct = new GameProduct
             {
@@ -29,10 +29,24 @@ namespace ProductListMVCDemo.Objects.DAL
                 Quantity = quantity,
                 GameType = gameType,
                 YearOfRelease = yearOfRelease,
-                ReccomendedAge = reccomendedAge
+                RecommendedAge = RecommendedAge
             };
 
             GameProducts.Add(newProduct);
+        }
+
+        public void AddCarProduct(string name, decimal price, int quantity, int year, string color)
+        {
+            CarProduct newProduct = new CarProduct
+            {
+                Name = name,
+                Price = price,
+                Quantity = quantity,
+                Year = year,
+                Color = color
+            };
+
+            CarProducts.Add(newProduct);
         }
     }
 }

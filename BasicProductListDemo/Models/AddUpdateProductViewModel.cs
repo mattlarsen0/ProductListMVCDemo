@@ -15,6 +15,8 @@ namespace ProductListMVCDemo.Models
 
         public ProductType ProductType { get; set; }
 
+        public string ErrorMessage { get; set; }
+
         /// <summary>
         /// Creates the view model for the add/update product page.
         /// </summary>
@@ -29,6 +31,7 @@ namespace ProductListMVCDemo.Models
             model.IsUpdate = product != null;
             model.Product = product;
             model.ProductType = productType;
+            model.ErrorMessage = errorMessage;
 
             return model;
         }

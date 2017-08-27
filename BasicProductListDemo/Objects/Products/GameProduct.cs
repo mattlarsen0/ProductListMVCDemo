@@ -16,6 +16,6 @@ namespace ProductListMVCDemo.Objects.Products
         public int YearOfRelease { get; set; }
 
         [Required]
-        public int ReccomendedAge { get; set; }
+        public int RecommendedAge { get; set; }
     }
 }

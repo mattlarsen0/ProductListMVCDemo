@@ -1,8 +1,4 @@
 ﻿using ProductListMVCDemo.Objects;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 
 namespace ProductListMVCDemo.Models
 {
@@ -22,9 +18,9 @@ namespace ProductListMVCDemo.Models
             bool isValid = true;
             errorMessage = null;
 
-            if (Name == null)
+            if (string.IsNullOrEmpty(Name))
             {
-                errorMessage = Errors.GenericMVCValidationError;
+                errorMessage = Errors.ProductsEmptyName;
                 isValid = false;
             }
             else if (Price < 0)

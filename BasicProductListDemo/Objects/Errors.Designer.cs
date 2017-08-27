@@ -39,7 +39,7 @@ namespace ProductListMVCDemo.Objects {
         public static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("BasicProductListDemo.Objects.Errors", typeof(Errors).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("ProductListMVCDemo.Objects.Errors", typeof(Errors).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -88,7 +88,25 @@ namespace ProductListMVCDemo.Objects {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Reccomended age cannot be negative..
+        ///   Looks up a localized string similar to You must enter a color..
+        /// </summary>
+        public static string ProductsEmptyColor {
+            get {
+                return ResourceManager.GetString("ProductsEmptyColor", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to You must enter a product name..
+        /// </summary>
+        public static string ProductsEmptyName {
+            get {
+                return ResourceManager.GetString("ProductsEmptyName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Recommended age cannot be negative..
         /// </summary>
         public static string ProductsNegativeAge {
             get {
@@ -115,11 +133,20 @@ namespace ProductListMVCDemo.Objects {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Year of release cannot be negative..
+        ///   Looks up a localized string similar to Year cannot be negative..
         /// </summary>
         public static string ProductsNegativeYear {
             get {
                 return ResourceManager.GetString("ProductsNegativeYear", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Year of release cannot be negative..
+        /// </summary>
+        public static string ProductsNegativeYearOfRelease {
+            get {
+                return ResourceManager.GetString("ProductsNegativeYearOfRelease", resourceCulture);
             }
         }
     }

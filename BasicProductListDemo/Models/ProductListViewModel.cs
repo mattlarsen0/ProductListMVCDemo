@@ -1,10 +1,11 @@
-﻿using ProductListMVCDemo.Objects.Products;
+﻿
+using ProductListMVCDemo.Objects.Products;
 using ProductListMVCDemo.Objects.DAL;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
-using BasicProductListDemo.Objects;
+using ProductListMVCDemo.Objects;
 
 namespace ProductListMVCDemo.Models
 {
@@ -21,6 +22,7 @@ namespace ProductListMVCDemo.Models
         public ProductBase LeastQuantityProduct { get; set; }
 
         public bool IsError { get; private set; }
+
         public string Message { get; private set; }
 
         /// <summary>

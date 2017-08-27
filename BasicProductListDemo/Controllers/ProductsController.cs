@@ -101,7 +101,7 @@ namespace ProductListMVCDemo.Controllers
                                                       model.Quantity,
                                                       model.GameType,
                                                       model.YearOfRelease,
-                                                      model.ReccomendedAge);
+                                                      model.RecommendedAge);
 
                         productContext.SaveChanges();
                     }
@@ -135,7 +135,62 @@ namespace ProductListMVCDemo.Controllers
             else
             {
                 AddUpdateProductViewModel viewModel = AddUpdateProductViewModel.GetModel(null, ProductType.Game, errorMessage);
-                viewResult = View("AddProduct", viewModel);
+                viewResult = View("AddUpdateProduct", viewModel);
+            }
+
+            return viewResult;
+        }
+
+        public ViewResult AddCarProduct(AddCarProductModel model)
+        {
+            bool addedProduct;
+            string errorMessage;
+
+            try
+            {
+                if (model.IsValid(out errorMessage))
+                {
+                    using (ProductListContext productContext = new ProductListContext())
+                    {
+                        productContext.AddCarProduct(model.Name,
+                                                     model.Price,
+                                                     model.Quantity,
+                                                     model.Year,
+                                                     model.Color);
+
+                        productContext.SaveChanges();
+                    }
+
+                    addedProduct = true;
+                }
+                else
+                {
+                    addedProduct = false;
+                }
+            }
+            catch (Exception e)
+            {
+                addedProduct = false;
+                errorMessage = Errors.GenericMVCInternalError;
+                ErrorLog.LogError(e);
+            }
+
+            ViewResult viewResult;
+
+            if (addedProduct)
+            {
+                ProductListViewModel viewModel;
+                using (ProductListContext productContext = new ProductListContext())
+                {
+                    viewModel = ProductListViewModel.GetModel(productContext, addedProduct: true);
+                }
+
+                viewResult = View("Index", viewModel);
+            }
+            else
+            {
+                AddUpdateProductViewModel viewModel = AddUpdateProductViewModel.GetModel(null, ProductType.Car, errorMessage);
+                viewResult = View("AddUpdateProduct", viewModel);
             }
 
             return viewResult;

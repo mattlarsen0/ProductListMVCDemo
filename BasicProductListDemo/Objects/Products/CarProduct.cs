@@ -1,6 +1,6 @@
-﻿using System;
+﻿using System.ComponentModel.DataAnnotations;
+using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
 
@@ -12,6 +12,6 @@ namespace ProductListMVCDemo.Objects.Products
         public int Year { get; set; }
 
         [Required]
-        public int Color { get; set; }
+        public string Color { get; set; }
     }
 }

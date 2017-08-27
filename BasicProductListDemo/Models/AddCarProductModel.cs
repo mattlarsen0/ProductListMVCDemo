@@ -1,5 +1,5 @@
-﻿using ProductListMVCDemo.Objects;
-using ProductListMVCDemo.Objects.Enums;
+﻿using ProductListMVCDemo.Models;
+using ProductListMVCDemo.Objects;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -8,14 +8,11 @@ using System.Web;
 
 namespace ProductListMVCDemo.Models
 {
-    public class AddGameProductModel : AddProductBaseModel
+    public class AddCarProductModel : AddProductBaseModel
     {
-        [EnumDataType(typeof(GameProductType))]
-        public GameProductType GameType { get; set; }
+        public int Year { get; set; }
 
-        public int YearOfRelease { get; set; }
-
-        public int RecommendedAge { get; set; }
+        public string Color { get; set; }
 
         public override bool IsValid(out string errorMessage)
         {
@@ -25,14 +22,14 @@ namespace ProductListMVCDemo.Models
             // base is valid, continue validation
             if (isValid)
             {
-                if (YearOfRelease <= 0)
+                if (Year <= 0)
                 {
-                    errorMessage = Errors.ProductsNegativeYear;
+                    errorMessage = Errors.ProductsNegativeYearOfRelease;
                     isValid = false;
                 }
-                else if (RecommendedAge < 0)
+                else if (string.IsNullOrEmpty(Color))
                 {
-                    errorMessage = Errors.ProductsNegativeAge;
+                    errorMessage = Errors.ProductsEmptyColor;
                     isValid = false;
                 }
             }

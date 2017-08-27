@@ -126,8 +126,14 @@
   <data name="GenericMVCValidationError" xml:space="preserve">
     <value>There was an error with your request. Please refesh your page and try again. If this message keeps appearing, please contact support.</value>
   </data>
+  <data name="ProductsEmptyColor" xml:space="preserve">
+    <value>You must enter a color.</value>
+  </data>
+  <data name="ProductsEmptyName" xml:space="preserve">
+    <value>You must enter a product name.</value>
+  </data>
   <data name="ProductsNegativeAge" xml:space="preserve">
-    <value>Reccomended age cannot be negative.</value>
+    <value>Recommended age cannot be negative.</value>
   </data>
   <data name="ProductsNegativePrice" xml:space="preserve">
     <value>Price cannot be negative.</value>
@@ -136,6 +142,9 @@
     <value>Quantity cannot be negative.</value>
   </data>
   <data name="ProductsNegativeYear" xml:space="preserve">
+    <value>Year cannot be negative.</value>
+  </data>
+  <data name="ProductsNegativeYearOfRelease" xml:space="preserve">
     <value>Year of release cannot be negative.</value>
   </data>
 </root>

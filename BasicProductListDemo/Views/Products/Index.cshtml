@@ -1,5 +1,6 @@
 ﻿@model ProductListMVCDemo.Models.ProductListViewModel
 @using ProductListMVCDemo.Objects.Products;
+@using ProductListMVCDemo.Objects.Enums;
 @{
     Layout = null;
 }
@@ -14,5 +15,15 @@
             </tr>
         }
     </table>
-    @Html.ActionLink("Add Product", "AddUpdateProduct")
+    @using (Html.BeginForm("AddUpdateProduct", "Products"))
+    {
+        <label>
+            Product Type:
+            <select name="productType">
+                <option value="@((int)ProductType.Game)">Game</option>
+                <option value="@((int)ProductType.Car)">Car</option>
+            </select>
+        </label>
+        <input type="submit" value="Add Product" />
+    }
 </div>

@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace BasicProductListDemo.Objects {
+namespace ProductListMVCDemo.Objects {
     using System;
     
     
@@ -39,7 +39,7 @@ namespace BasicProductListDemo.Objects {
         public static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("BasicProductListDemo.Objects.General", typeof(General).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("ProductListMVCDemo.Objects.General", typeof(General).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
