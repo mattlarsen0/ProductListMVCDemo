@@ -23,6 +23,11 @@ namespace ProductListMVCDemo.Models
                 errorMessage = Errors.ProductsEmptyName;
                 isValid = false;
             }
+            else if (Name.Length > 50)
+            {
+                errorMessage = Errors.ProductsNameTooLong;
+                isValid = false;
+            }
             else if (Price < 0)
             {
                 errorMessage = Errors.ProductsNegativePrice;

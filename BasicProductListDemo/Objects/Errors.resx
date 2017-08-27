@@ -132,6 +132,9 @@
   <data name="ProductsEmptyName" xml:space="preserve">
     <value>You must enter a product name.</value>
   </data>
+  <data name="ProductsNameTooLong" xml:space="preserve">
+    <value>Name is too long. Maximum length is 50 characters.</value>
+  </data>
   <data name="ProductsNegativeAge" xml:space="preserve">
     <value>Recommended age cannot be negative.</value>
   </data>
@@ -142,9 +145,9 @@
     <value>Quantity cannot be negative.</value>
   </data>
   <data name="ProductsNegativeYear" xml:space="preserve">
-    <value>Year cannot be negative.</value>
+    <value>Year must be greater than zero.</value>
   </data>
   <data name="ProductsNegativeYearOfRelease" xml:space="preserve">
-    <value>Year of release cannot be negative.</value>
+    <value>Year of release must be greater than zero.</value>
   </data>
 </root>

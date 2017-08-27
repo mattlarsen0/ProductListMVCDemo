@@ -66,6 +66,7 @@ namespace ProductListMVCDemo.Controllers
 
             if (errorMessage != null)
             {
+                // Error, show the message
                 ProductListViewModel viewModel;
                 using (ProductListContext productContext = new ProductListContext())
                 {
@@ -76,6 +77,7 @@ namespace ProductListMVCDemo.Controllers
             }
             else
             {
+                // Load the Add/Update view
                 AddUpdateProductViewModel viewModel = null;
 
                 viewModel = AddUpdateProductViewModel.GetModel(productToUpdate, model.ProductType);
@@ -90,14 +92,18 @@ namespace ProductListMVCDemo.Controllers
         {
             bool addedProduct;
             string errorMessage;
+            GameProduct formProductData = null;
 
             try
             {
                 if (model.IsValid(out errorMessage))
                 {
+                    // round price
                     model.Price = Math.Round(model.Price, 2);
+
                     using (ProductListContext productContext = new ProductListContext())
                     {
+                        // insert the product
                         productContext.AddGameProduct(model.Name,
                                                       model.Price, 
                                                       model.Quantity,
@@ -112,6 +118,18 @@ namespace ProductListMVCDemo.Controllers
                 }
                 else
                 {
+                    // save form data for when we return
+                    formProductData = new GameProduct
+                    {
+                        ProductID = -1,
+                        Name = model.Name,
+                        Price = model.Price,
+                        Quantity = model.Quantity,
+                        GameType = model.GameType,
+                        YearOfRelease = model.YearOfRelease,
+                        RecommendedAge = model.RecommendedAge,
+                    };
+
                     addedProduct = false;
                 }
             }
@@ -126,6 +144,7 @@ namespace ProductListMVCDemo.Controllers
 
             if (addedProduct)
             {
+                // Added product, return to list
                 ProductListModel viewModel = new ProductListModel
                 {
                     AddedProduct = true
@@ -135,7 +154,8 @@ namespace ProductListMVCDemo.Controllers
             }
             else
             {
-                AddUpdateProductViewModel viewModel = AddUpdateProductViewModel.GetModel(null, ProductType.Game, errorMessage);
+                // Error, show message
+                AddUpdateProductViewModel viewModel = AddUpdateProductViewModel.GetModel(formProductData, ProductType.Game, errorMessage);
                 result = View("AddUpdateProduct", viewModel);
             }
 
@@ -147,14 +167,17 @@ namespace ProductListMVCDemo.Controllers
         {
             bool addedProduct;
             string errorMessage;
+            CarProduct formProductData = null;
 
             try
             {
                 if (model.IsValid(out errorMessage))
                 {
+                    // round the price
                     model.Price = Math.Round(model.Price, 2);
                     using (ProductListContext productContext = new ProductListContext())
                     {
+                        // insert the product
                         productContext.AddCarProduct(model.Name,
                                                      model.Price,
                                                      model.Quantity,
@@ -168,6 +191,17 @@ namespace ProductListMVCDemo.Controllers
                 }
                 else
                 {
+                    // save form data for when we return
+                    formProductData = new CarProduct
+                    {
+                        ProductID = -1,
+                        Name = model.Name,
+                        Price = model.Price,
+                        Quantity = model.Quantity,
+                        Year = model.Year,
+                        Color = model.Color
+                    };
+
                     addedProduct = false;
                 }
             }
@@ -182,6 +216,7 @@ namespace ProductListMVCDemo.Controllers
 
             if (addedProduct)
             {
+                // Added the product, return to list
                 ProductListModel viewModel = new ProductListModel
                 {
                     AddedProduct = true
@@ -191,7 +226,8 @@ namespace ProductListMVCDemo.Controllers
             }
             else
             {
-                AddUpdateProductViewModel viewModel = AddUpdateProductViewModel.GetModel(null, ProductType.Car, errorMessage);
+                // Error, show the message
+                AddUpdateProductViewModel viewModel = AddUpdateProductViewModel.GetModel(formProductData, ProductType.Car, errorMessage);
                 result = View("AddUpdateProduct", viewModel);
             }
 

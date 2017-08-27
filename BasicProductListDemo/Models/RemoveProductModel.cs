@@ -10,6 +10,11 @@ namespace ProductListMVCDemo.Models
     {
         public int ProductID { get; set; }
 
+        /// <summary>
+        /// Validates an action's model to ensure that data is correct
+        /// </summary>
+        /// <param name="errorMessage">Error message to be displayed to the user. Only set when model is invalid</param>
+        /// <returns>True if the model is valid, False otherwise</returns>
         public bool IsValid(out string errorMessage)
         {
             bool isValid = true;

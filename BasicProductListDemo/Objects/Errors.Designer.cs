@@ -106,6 +106,15 @@ namespace ProductListMVCDemo.Objects {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Name is too long. Maximum length is 50 characters..
+        /// </summary>
+        public static string ProductsNameTooLong {
+            get {
+                return ResourceManager.GetString("ProductsNameTooLong", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Recommended age cannot be negative..
         /// </summary>
         public static string ProductsNegativeAge {
@@ -133,7 +142,7 @@ namespace ProductListMVCDemo.Objects {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Year cannot be negative..
+        ///   Looks up a localized string similar to Year must be greater than zero..
         /// </summary>
         public static string ProductsNegativeYear {
             get {
@@ -142,7 +151,7 @@ namespace ProductListMVCDemo.Objects {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Year of release cannot be negative..
+        ///   Looks up a localized string similar to Year of release must be greater than zero..
         /// </summary>
         public static string ProductsNegativeYearOfRelease {
             get {

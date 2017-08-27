@@ -24,7 +24,10 @@ namespace ProductListMVCDemo.Models
         /// <summary>
         /// Creates the view model for the add/update product page.
         /// </summary>
-        /// <param name="product">Product that is being modified (if any)</param>
+        /// <param name="product">
+        /// Product that is being modified (if any).
+        /// In the event of an error, this will be used to hold form data that was posted back
+        /// </param>
         /// <param name="productType">Type of the product being created or modified</param>
         /// <param name="isErorr">Error string to display on the page. Set when posting back.</param>
         /// <returns>The generated view model</returns>
@@ -32,7 +35,7 @@ namespace ProductListMVCDemo.Models
         {
             AddUpdateProductViewModel model = new AddUpdateProductViewModel();
 
-            model.IsUpdate = product != null;
+            model.IsUpdate = product?.ProductID > 0;
             model.Product = product;
             model.ProductType = productType;
             model.ErrorMessage = errorMessage;

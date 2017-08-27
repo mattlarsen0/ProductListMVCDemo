@@ -1,5 +1,6 @@
 ﻿@model ProductListMVCDemo.Models.AddUpdateProductViewModel
 @using ProductListMVCDemo.Objects.Enums;
+@using ProductListMVCDemo.Objects.Products;
 
 <h2>Add @Model.ProductTypeStr</h2>
 
@@ -13,39 +14,58 @@
     @using (Html.BeginForm(Model.AddProductAction, "Products"))
     {
         <div class="inputOption">
-            <label>Name:<input name="Name" type="text" /></label>
+            <label>Name:<input name="Name" type="text" value="@(Model.Product?.Name)"/></label>
         </div>
         <div class="inputOption shortNum">
-            <label>Price:<input name="Price" type="text" /></label>
+            <label>Price:<input name="Price" type="text" value="@(Model.Product?.Price)"/></label>
         </div>
         <div class="inputOption shortNum">
-            <label>Quantity:<input name="Quantity" type="text" /></label>
+            <label>Quantity:<input name="Quantity" type="text" value="@(Model.Product?.Quantity)"/></label>
         </div>
         switch (Model.ProductType)
         {
             case ProductType.Game:
+                GameProduct gameProduct = (GameProduct)Model.Product;
+
                 <div class="inputOption">
                     <label>
                         Game Type:
                         <select name="GameType">
-                            <option value="@GameProductType.VideoGame">Video Game</option>
-                            <option value="@GameProductType.BoardGame">Board Game</option>
+                            @if (gameProduct?.GameType == GameProductType.VideoGame)
+                            {
+                                <option value="@GameProductType.VideoGame" selected="selected">Video Game</option>
+                            }
+                            else
+                            {
+                                <option value="@GameProductType.VideoGame">Video Game</option>
+                            }
+
+                            @if (gameProduct?.GameType == GameProductType.BoardGame)
+                            {
+                                <option value="@GameProductType.BoardGame" selected="selected">Board Game</option>
+                            }
+                            else
+                            {
+                                <option value="@GameProductType.BoardGame">Board Game</option>
+                            }
                         </select>
                     </label>
                 </div>
                 <div class="inputOption shortNum">
-                    <label>Year of Release:<input name="YearOfRelease" type="text" /></label>
+                    <label>Year of Release:<input name="YearOfRelease" type="text" value="@(gameProduct?.YearOfRelease)"/></label>
                 </div>
                 <div class="inputOption shortNum">
-                    <label>Recommended Age:<input name="RecommendedAge" type="text" /></label>
+                    <label>Recommended Age:<input name="RecommendedAge" type="text" value="@(gameProduct?.RecommendedAge)"/></label>
                 </div>
                 break;
             case ProductType.Car:
+                CarProduct carProduct = (CarProduct)Model.Product;
+
                 <div class="inputOption shortNum">
-                    <label>Year:<input name="Year" type="text" /></label>
+                    <label>Year:<input name="Year" type="text" value="@(carProduct?.Year)"/></label>
                 </div>
                 <div class="inputOption">
-                    <label>Color:<input name="Color" type="text" /></label>
+                    <label>Color:<input name="Color" type="text" value="@(carProduct?.Color)"/></label>
                 </div>
                 break;
         }
