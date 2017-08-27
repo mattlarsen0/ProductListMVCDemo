@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using ProductListMVCDemo.Objects.Enums;
 
 namespace ProductListMVCDemo.Objects.Products
 {
@@ -24,6 +25,11 @@ namespace ProductListMVCDemo.Objects.Products
         public override string GetProductTypeString()
         {
             return ProductTypeString;
+        }
+
+        public override ProductType GetProductType()
+        {
+            return ProductType.Car;
         }
     }
 }

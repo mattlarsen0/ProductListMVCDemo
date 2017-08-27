@@ -10,7 +10,7 @@ namespace ProductListMVCDemo.Objects.Products
 {
     public class GameProduct : ProductBase
     {
-        private const string ProductTypeString = "Car";
+        private const string ProductTypeString = "Game";
 
         [Required]
         public GameProductType GameType { get; set; }
@@ -47,6 +47,11 @@ namespace ProductListMVCDemo.Objects.Products
         public override string GetProductTypeString()
         {
             return ProductTypeString;
+        }
+
+        public override ProductType GetProductType()
+        {
+            return ProductType.Game;
         }
     }
 }

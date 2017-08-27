@@ -22,7 +22,7 @@ namespace ProductListMVCDemo.Controllers
 
             using (ProductListContext productsContext = new ProductListContext())
             {
-                viewModel = ProductListViewModel.GetModel(productsContext, model.AddedProduct);
+                viewModel = ProductListViewModel.GetModel(productsContext, model.AddedOrUpdatedProduct);
             }
 
             return View(viewModel);
@@ -147,7 +147,7 @@ namespace ProductListMVCDemo.Controllers
                 // Added product, return to list
                 ProductListModel viewModel = new ProductListModel
                 {
-                    AddedProduct = true
+                    AddedOrUpdatedProduct = true
                 };
 
                 result = RedirectToAction("Index", viewModel);
@@ -219,7 +219,7 @@ namespace ProductListMVCDemo.Controllers
                 // Added the product, return to list
                 ProductListModel viewModel = new ProductListModel
                 {
-                    AddedProduct = true
+                    AddedOrUpdatedProduct = true
                 };
 
                 result = RedirectToAction("Index", viewModel);
@@ -227,6 +227,156 @@ namespace ProductListMVCDemo.Controllers
             else
             {
                 // Error, show the message
+                AddUpdateProductViewModel viewModel = AddUpdateProductViewModel.GetModel(formProductData, ProductType.Car, errorMessage);
+                result = View("AddUpdateProduct", viewModel);
+            }
+
+            return result;
+        }
+
+        [HttpPost]
+        public ActionResult UpdateGameProduct(UpdateGameProductModel model)
+        {
+            bool updatedProduct;
+            string errorMessage;
+            GameProduct formProductData = null;
+
+            try
+            {
+                if (model.IsValid(out errorMessage))
+                {
+                    // round price
+                    model.Price = Math.Round(model.Price, 2);
+
+                    using (ProductListContext productContext = new ProductListContext())
+                    {
+                        // update the product
+                        productContext.UpdateGameProduct(model.ProductID,
+                                                         model.Name,
+                                                         model.Price,
+                                                         model.Quantity,
+                                                         model.GameType,
+                                                         model.YearOfRelease,
+                                                         model.RecommendedAge);
+
+                        productContext.SaveChanges();
+                    }
+
+                    updatedProduct = true;
+                }
+                else
+                {
+                    // save form data for when we return
+                    formProductData = new GameProduct
+                    {
+                        ProductID = model.ProductID,
+                        Name = model.Name,
+                        Price = model.Price,
+                        Quantity = model.Quantity,
+                        GameType = model.GameType,
+                        YearOfRelease = model.YearOfRelease,
+                        RecommendedAge = model.RecommendedAge,
+                    };
+
+                    updatedProduct = false;
+                }
+            }
+            catch (Exception e)
+            {
+                updatedProduct = false;
+                errorMessage = Errors.GenericMVCInternalError;
+                ErrorLog.LogError(e);
+            }
+
+            ActionResult result;
+
+            if (updatedProduct)
+            {
+                // Updated product, return to list
+                ProductListModel viewModel = new ProductListModel
+                {
+                    AddedOrUpdatedProduct = true
+                };
+
+                result = RedirectToAction("Index", viewModel);
+            }
+            else
+            {
+                // Error, show message
+                AddUpdateProductViewModel viewModel = AddUpdateProductViewModel.GetModel(formProductData, ProductType.Game, errorMessage);
+                result = View("AddUpdateProduct", viewModel);
+            }
+
+            return result;
+        }
+
+        [HttpPost]
+        public ActionResult UpdateCarProduct(UpdateCarProdutModel model)
+        {
+            bool updatedProduct;
+            string errorMessage;
+            CarProduct formProductData = null;
+
+            try
+            {
+                if (model.IsValid(out errorMessage))
+                {
+                    // round price
+                    model.Price = Math.Round(model.Price, 2);
+
+                    using (ProductListContext productContext = new ProductListContext())
+                    {
+                        // update the product
+                        productContext.UpdateCarProduct(model.ProductID,
+                                                        model.Name,
+                                                        model.Price,
+                                                        model.Quantity,
+                                                        model.Year,
+                                                        model.Color);
+
+                        productContext.SaveChanges();
+                    }
+
+                    updatedProduct = true;
+                }
+                else
+                {
+                    // save form data for when we return
+                    formProductData = new CarProduct
+                    {
+                        ProductID = model.ProductID,
+                        Name = model.Name,
+                        Price = model.Price,
+                        Quantity = model.Quantity,
+                        Year = model.Year,
+                        Color = model.Color
+                    };
+
+                    updatedProduct = false;
+                }
+            }
+            catch (Exception e)
+            {
+                updatedProduct = false;
+                errorMessage = Errors.GenericMVCInternalError;
+                ErrorLog.LogError(e);
+            }
+
+            ActionResult result;
+
+            if (updatedProduct)
+            {
+                // Updated product, return to list
+                ProductListModel viewModel = new ProductListModel
+                {
+                    AddedOrUpdatedProduct = true
+                };
+
+                result = RedirectToAction("Index", viewModel);
+            }
+            else
+            {
+                // Error, show message
                 AddUpdateProductViewModel viewModel = AddUpdateProductViewModel.GetModel(formProductData, ProductType.Car, errorMessage);
                 result = View("AddUpdateProduct", viewModel);
             }

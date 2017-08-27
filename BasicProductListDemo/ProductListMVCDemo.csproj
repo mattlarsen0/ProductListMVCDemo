@@ -165,6 +165,9 @@
     <Compile Include="Models\IActionModel.cs" />
     <Compile Include="Models\ProductListModel.cs" />
     <Compile Include="Models\RemoveProductModel.cs" />
+    <Compile Include="Models\UpdateCarProdutModel.cs" />
+    <Compile Include="Models\UpdateGameProductModel.cs" />
+    <Compile Include="Models\UpdateProductBaseModel.cs" />
     <Compile Include="Objects\DAL\ProductListContext.cs" />
     <Compile Include="Objects\Enums\GameProductType.cs" />
     <Compile Include="Objects\Enums\ProductType.cs" />
@@ -224,9 +227,6 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Products\AddUpdateProduct.cshtml" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Views\Products\_AddProduct.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Objects\Errors.resx">

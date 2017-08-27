@@ -7,11 +7,13 @@
 
 <div>
     <h1>Current Products:</h1>
-    <table id="productListTable" class="dataTable">
-        @{ 
-            Html.RenderPartial("_ProductListTable", Model);
-        }
-    </table>    
+    <div>
+        <table id="productListTable" class="dataTable">
+            @{
+                Html.RenderPartial("_ProductListTable", Model);
+            }
+        </table>
+    </div>
     <h3>Add New Product</h3>
     <div class="addProductButtons">
         @using (Html.BeginForm("AddUpdateProduct", "Products"))

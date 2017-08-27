@@ -33,7 +33,8 @@ namespace ProductListMVCDemo.Objects.Internal
             errorSb.Append(Environment.NewLine);
             errorSb.Append(e.Message);
             errorSb.Append(Environment.NewLine);
-            errorSb.Append("Stack Trace");
+            errorSb.Append("Stack Trace: ");
+            errorSb.Append(Environment.NewLine);
             errorSb.Append(e.StackTrace);
 
             // Log the error string

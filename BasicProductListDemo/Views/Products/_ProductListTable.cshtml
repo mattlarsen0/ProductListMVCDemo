@@ -4,8 +4,8 @@
 @if (Model.AllProducts.Count > 0)
 {
     <tr>
-        <th>Type</th>
         <th>Name</th>
+        <th>Type</th>
         <th>Price</th>
         <th>Quantity</th>
         <th>Additional</th>
@@ -14,8 +14,8 @@
     foreach (ProductBase product in Model.AllProducts)
     {
         <tr>
+            <td><a href="~/Products/AddUpdateProduct?ProductID=@product.ProductID&ProductType=@((int)product.GetProductType())">@product.Name</a></td>
             <td>@product.GetProductTypeString()</td>
-            <td>@product.Name</td>
             <td>@product.Price</td>
             <td>@product.Quantity</td>
             <td>@product.GetAdditionalInformation()</td>

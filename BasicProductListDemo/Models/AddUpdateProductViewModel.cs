@@ -19,7 +19,7 @@ namespace ProductListMVCDemo.Models
 
         public string ProductTypeStr { get; set; }
 
-        public string AddProductAction { get; set; }
+        public string FormProductAction { get; set; }
 
         /// <summary>
         /// Creates the view model for the add/update product page.
@@ -43,11 +43,25 @@ namespace ProductListMVCDemo.Models
             switch (model.ProductType)
             {
                 case ProductType.Game:
-                    model.AddProductAction = "AddGameProduct";
+                    if (model.IsUpdate)
+                    {
+                        model.FormProductAction = "UpdateGameProduct";
+                    }
+                    else
+                    {
+                        model.FormProductAction = "AddGameProduct";
+                    }
                     model.ProductTypeStr = "Game";
                     break;
                 case ProductType.Car:
-                    model.AddProductAction = "AddCarProduct";
+                    if (model.IsUpdate)
+                    {
+                        model.FormProductAction = "UpdateCarProduct";
+                    }
+                    else
+                    {
+                        model.FormProductAction = "AddCarProduct";
+                    }
                     model.ProductTypeStr = "Car";
                     break;
             }

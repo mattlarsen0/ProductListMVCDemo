@@ -48,5 +48,34 @@ namespace ProductListMVCDemo.Objects.DAL
 
             CarProducts.Add(newProduct);
         }
+
+        public void UpdateGameProduct(int productID, string name, decimal price, int quantity, GameProductType gameType, int yearOfRelease, int recommendedAge)
+        {
+            GameProduct productToUpdate = GameProducts.FirstOrDefault(p => p.ProductID == productID);
+
+            if (productToUpdate != null)
+            {
+                productToUpdate.Name = name;
+                productToUpdate.Price = price;
+                productToUpdate.Quantity = quantity;
+                productToUpdate.GameType = gameType;
+                productToUpdate.YearOfRelease = yearOfRelease;
+                productToUpdate.RecommendedAge = recommendedAge;
+            }
+        }
+
+        internal void UpdateCarProduct(int productID, string name, decimal price, int quantity, int year, string color)
+        {
+            CarProduct productToUpdate = CarProducts.FirstOrDefault(p => p.ProductID == productID);
+
+            if (productToUpdate != null)
+            {
+                productToUpdate.Name = name;
+                productToUpdate.Price = price;
+                productToUpdate.Quantity = quantity;
+                productToUpdate.Year = year;
+                productToUpdate.Color = color;
+            }
+        }
     }
 }

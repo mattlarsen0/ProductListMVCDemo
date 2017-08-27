@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.ComponentModel;
+using ProductListMVCDemo.Objects.Enums;
 
 namespace ProductListMVCDemo.Objects.Products
 {
@@ -34,6 +35,11 @@ namespace ProductListMVCDemo.Objects.Products
         public virtual string GetProductTypeString()
         {
             return string.Empty;
+        }
+
+        public virtual ProductType GetProductType()
+        {
+            return ProductType.None;
         }
     }
 }

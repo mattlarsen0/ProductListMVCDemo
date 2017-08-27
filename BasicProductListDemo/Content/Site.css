@@ -15,6 +15,9 @@
 .dataTable td {
     padding: 5px 10px;
     border: 1px solid #000;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    max-width: 300px;
 }
 
 .dataTable th {
@@ -32,11 +35,11 @@
     text-align: left;
 }
 
-.addProductButtons {
+.addUpdateProductButtons {
     margin: 15px 0;
 }
 
-.addProductButtons input {
+.addUpdateProductButtons input {
     margin-top: 10px;
 }
 
@@ -51,15 +54,15 @@
     text-align: center;
 }
 
-.addProduct .inputOption {
+.addUpdateProduct .inputOption {
     margin: 10px 0;
 }
 
-.addProduct .inputOption input {
+.addUpdateProduct .inputOption input {
     margin-left: 10px;
 }
 
-.addProduct .inputOption.shortNum input {
+.addUpdateProduct .inputOption.shortNum input {
     width: 50px;
 }
 
