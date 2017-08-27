@@ -35,7 +35,7 @@ namespace ProductListMVCDemo.Models
         public static ProductListViewModel GetModel(ProductListContext productContext, bool addedProduct = false, string errorMessage = null)
         {
             ProductListViewModel model = new ProductListViewModel();
-            List<ProductBase> allProductsList = productContext.AllProducts.ToList();
+            List<ProductBase> allProductsList = productContext.AllProducts.Where(p => !p.Removed).ToList();
 
             // Get products in a single list to find min/max values
             IEnumerable<ProductBase> allProductsOrderedByPrice = allProductsList.OrderBy(p => p.Price);

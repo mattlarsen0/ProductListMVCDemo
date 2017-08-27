@@ -1,0 +1,31 @@
+﻿@model ProductListMVCDemo.Models.ProductListViewModel
+@using ProductListMVCDemo.Objects.Products;
+
+@if (Model.AllProducts.Count > 0)
+{
+    <tr>
+        <th>Name</th>
+        <th>Price</th>
+        <th>Quantity</th>
+        <th>Additional</th>
+        <th>Remove</th>
+    </tr>
+    foreach (ProductBase product in Model.AllProducts)
+    {
+        <tr>
+            <td>@product.Name</td>
+            <td>@product.Price</td>
+            <td>@product.Quantity</td>
+            <td>@product.GetAdditionalInformation()</td>
+            <td class="removeItem" data-product-id="@product.ProductID"><img class="removeIcon" src="~/Content/Icons/close-circled.png" /></td>
+        </tr>
+    }
+}
+else
+{
+    <tr>
+        <td>
+            No Products Exist
+        </td>
+    </tr>
+}

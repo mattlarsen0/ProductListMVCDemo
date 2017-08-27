@@ -1,24 +1,56 @@
 ﻿body {
-    padding-top: 50px;
-    padding-bottom: 20px;
+    padding: 0 20px;
 }
 
-/* Set padding to keep content from hitting the edges */
-.body-content {
-    padding-left: 15px;
-    padding-right: 15px;
+input {
+    max-width: 200px;
 }
 
-/* Override the default bootstrap behavior where horizontal description lists 
-   will truncate terms that are too long to fit in the left column 
-*/
-.dl-horizontal dt {
-    white-space: normal;
+.dataTable {
+    background: #76C9FF;
+    border-collapse: collapse;
+    border: 1px solid black;
 }
 
-/* Set width on the form input elements since they're 100% wide by default */
-input,
-select,
-textarea {
-    max-width: 280px;
+.dataTable tr{
+    padding: 5px;
+}
+
+.dataTable td {
+    padding: 5px 10px;
+    border: 1px solid black;
+}
+
+.dataTable th {
+    padding: 12px 8px;
+    border: 1px solid black;
+}
+
+.dataTable tr:nth-child(even) {
+    padding: 0;
+    margin: 0;
+    background: #A2DAFF;
+}
+ 
+.dataTable th {
+    text-align: left;
+}
+
+.addProductButtons {
+    margin: 15px 0;
+}
+
+.addProductButtons input {
+    margin-top: 10px;
+}
+
+.removeIcon {
+    max-width: 20px;
+    max-height: 20px;
+    cursor: pointer;
+    vertical-align: middle;
+}
+
+.removeItem {
+    text-align: center;
 }

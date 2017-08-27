@@ -7,25 +7,25 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
-using System.Web.Http;
 using System.Web.Mvc;
 using ProductListMVCDemo.Objects.Enums;
 using ProductListMVCDemo.Objects.Products;
+using System.Threading.Tasks;
 
 namespace ProductListMVCDemo.Controllers
 {
     public class ProductsController : Controller
     {
-        public ViewResult Index()
+        public ViewResult Index(ProductListModel model)
         {
-            ProductListViewModel model;
+            ProductListViewModel viewModel;
 
             using (ProductListContext productsContext = new ProductListContext())
-            { 
-                model = ProductListViewModel.GetModel(productsContext);
+            {
+                viewModel = ProductListViewModel.GetModel(productsContext, model.AddedProduct);
             }
 
-            return View(model);
+            return View(viewModel);
         }
 
         public ViewResult AddUpdateProduct(AddUpdateProductModel model)
@@ -85,7 +85,8 @@ namespace ProductListMVCDemo.Controllers
             return viewResult;
         }
 
-        public ViewResult AddGameProduct(AddGameProductModel model)
+        [HttpPost]
+        public ActionResult AddGameProduct(AddGameProductModel model)
         {
             bool addedProduct;
             string errorMessage;
@@ -120,28 +121,28 @@ namespace ProductListMVCDemo.Controllers
                 ErrorLog.LogError(e);
             }
 
-            ViewResult viewResult;
+            ActionResult result;
 
             if (addedProduct)
             {
-                ProductListViewModel viewModel;
-                using (ProductListContext productContext = new ProductListContext())
+                ProductListModel viewModel = new ProductListModel
                 {
-                    viewModel = ProductListViewModel.GetModel(productContext, addedProduct: true);
-                }
+                    AddedProduct = true
+                };
 
-                viewResult = View("Index", viewModel);
+                result = RedirectToAction("Index", viewModel);
             }
             else
             {
                 AddUpdateProductViewModel viewModel = AddUpdateProductViewModel.GetModel(null, ProductType.Game, errorMessage);
-                viewResult = View("AddUpdateProduct", viewModel);
+                result = View("AddUpdateProduct", viewModel);
             }
 
-            return viewResult;
+            return result;
         }
 
-        public ViewResult AddCarProduct(AddCarProductModel model)
+        [HttpPost]
+        public ActionResult AddCarProduct(AddCarProductModel model)
         {
             bool addedProduct;
             string errorMessage;
@@ -175,25 +176,61 @@ namespace ProductListMVCDemo.Controllers
                 ErrorLog.LogError(e);
             }
 
-            ViewResult viewResult;
+            ActionResult result;
 
             if (addedProduct)
             {
-                ProductListViewModel viewModel;
-                using (ProductListContext productContext = new ProductListContext())
+                ProductListModel viewModel = new ProductListModel
                 {
-                    viewModel = ProductListViewModel.GetModel(productContext, addedProduct: true);
-                }
+                    AddedProduct = true
+                };
 
-                viewResult = View("Index", viewModel);
+                result = RedirectToAction("Index", viewModel);
             }
             else
             {
                 AddUpdateProductViewModel viewModel = AddUpdateProductViewModel.GetModel(null, ProductType.Car, errorMessage);
-                viewResult = View("AddUpdateProduct", viewModel);
+                result = View("AddUpdateProduct", viewModel);
             }
 
-            return viewResult;
+            return result;
+        }
+
+        [HttpPost]
+        public JsonResult RemoveProduct(RemoveProductModel model)
+        {
+            BasicResponseModel responseModel = new BasicResponseModel();
+
+            try
+            {
+                ProductListViewModel partialViewModel;
+                using (ProductListContext productContext = new ProductListContext())
+                {
+                    ProductBase productToRemove = productContext.AllProducts.FirstOrDefault(p => p.ProductID == model.ProductID);
+    
+                    if (productToRemove != null)
+                    {
+                        productToRemove.Removed = true;
+                    }
+
+                    productContext.SaveChanges();
+
+                    // create the model so we can render the new version of the table
+                    partialViewModel = ProductListViewModel.GetModel(productContext);
+                    
+                    responseModel.Success = true;
+                    // render the table
+                    responseModel.Content = MvcHelper.RenderControllerPartialViewToString(this, "_ProductListTable", partialViewModel);
+                }
+            }
+            catch (Exception e)
+            {
+                responseModel.Success = false;
+                responseModel.Content = Errors.GenericMVCInternalError;
+                ErrorLog.LogError(e);
+            }
+
+            return Json(responseModel);
         }
     }
 }

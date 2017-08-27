@@ -161,7 +161,10 @@
     <Compile Include="Models\AddProductBaseModel.cs" />
     <Compile Include="Models\AddUpdateProductModel.cs" />
     <Compile Include="Models\AddUpdateProductViewModel.cs" />
+    <Compile Include="Models\BasicResponseModel.cs" />
     <Compile Include="Models\IActionModel.cs" />
+    <Compile Include="Models\ProductListModel.cs" />
+    <Compile Include="Models\RemoveProductModel.cs" />
     <Compile Include="Objects\DAL\ProductListContext.cs" />
     <Compile Include="Objects\Enums\GameProductType.cs" />
     <Compile Include="Objects\Enums\ProductType.cs" />
@@ -176,6 +179,7 @@
       <DependentUpon>General.resx</DependentUpon>
     </Compile>
     <Compile Include="Objects\Internal\ErrorLog.cs" />
+    <Compile Include="Objects\MvcHelper.cs" />
     <Compile Include="Objects\Products\GameProduct.cs" />
     <Compile Include="Objects\Products\ProductBase.cs" />
     <Compile Include="Objects\Products\CarProduct.cs" />
@@ -187,12 +191,14 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\Icons\close-circled.png" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
     <Content Include="ApplicationInsights.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Scripts\ProductList.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -206,7 +212,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Scripts\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
@@ -232,6 +237,9 @@
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>General.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Products\_ProductListTable.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

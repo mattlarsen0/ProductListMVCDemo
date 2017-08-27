@@ -13,5 +13,10 @@ namespace ProductListMVCDemo.Objects.Products
 
         [Required]
         public string Color { get; set; }
+
+        public override string GetAdditionalInformation()
+        {
+            return Year + ", " + Color;
+        }
     }
 }
