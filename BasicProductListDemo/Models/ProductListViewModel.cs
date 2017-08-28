@@ -62,7 +62,7 @@ namespace ProductListMVCDemo.Models
             // lookup supplier with most products
             IEnumerable<int> supplierIDsOrderedByProductCount = from p in allProductsList
                                                                 group p by p.SupplierID into g
-                                                                orderby g.Count() descending
+                                                                orderby g.Sum(p => p.Quantity) descending
                                                                 select g.Key;
 
             int mostProductSupplierID = supplierIDsOrderedByProductCount.FirstOrDefault();

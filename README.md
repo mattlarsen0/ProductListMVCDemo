@@ -9,4 +9,4 @@ Some statistics to show LINQ usage will be displayed below and updated via AJAX 
 ![Main Tables](http://i.imgur.com/gVXzvlR.png)
 
 ### Additional Data Tables
-![Additional Tables](http://i.imgur.com/h08MOA7.png)
+![Additional Tables](http://i.imgur.com/dpz6qaE.png)
