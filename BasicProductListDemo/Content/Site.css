@@ -1,5 +1,6 @@
 ﻿body {
     padding: 0 20px;
+    font-family: 'Open Sans', sans-serif;
 }
 
 .dataTable {
@@ -35,14 +36,6 @@
     text-align: left;
 }
 
-.addUpdateProductButtons {
-    margin: 15px 0;
-}
-
-.addUpdateProductButtons input {
-    margin-top: 10px;
-}
-
 .removeIcon {
     max-width: 20px;
     max-height: 20px;
@@ -54,15 +47,15 @@
     text-align: center;
 }
 
-.addUpdateProduct .inputOption {
+.addUpdate .inputOption {
     margin: 10px 0;
 }
 
-.addUpdateProduct .inputOption input {
+.addUpdate .inputOption input {
     margin-left: 10px;
 }
 
-.addUpdateProduct .inputOption.shortNum input {
+.addUpdate .inputOption.shortNum input {
     width: 50px;
 }
 
@@ -70,7 +63,7 @@ a.button, input[type=button], input[type=submit] {
     height: 35px;
     line-height: 13px;
     font-size: 15px;
-    min-width: 100px;
+    min-width: 120px;
     border: 1px solid #000;
     display: inline-block;
     vertical-align: middle;
@@ -82,14 +75,12 @@ a.button, input[type=button], input[type=submit] {
     text-decoration: none;
     cursor: pointer;
     border-radius: 3px;
+    color: #000;
+    font-family: 'Open Sans', sans-serif;
 }
 
 a.button:hover, input[type=button]:hover, input[type=submit]:hover {
     background: #10abe5;
-}
-
-a .button:link {
-    cursor: auto;
 }
 
 a.button:visited {

@@ -70,6 +70,15 @@ namespace ProductListMVCDemo.Objects {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to The current supplier could not be found. Please refresh your page and try again..
+        /// </summary>
+        public static string CannotFindSupplier {
+            get {
+                return ResourceManager.GetString("CannotFindSupplier", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to There was an error with your request. Support has been notified..
         /// </summary>
         public static string GenericMVCInternalError {
@@ -156,6 +165,33 @@ namespace ProductListMVCDemo.Objects {
         public static string ProductsNegativeYearOfRelease {
             get {
                 return ResourceManager.GetString("ProductsNegativeYearOfRelease", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to You must enter a supplier name..
+        /// </summary>
+        public static string SupplierEmptyName {
+            get {
+                return ResourceManager.GetString("SupplierEmptyName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Supplier name is too long. Maximum length is 50 characters..
+        /// </summary>
+        public static string SupplierNameTooLong {
+            get {
+                return ResourceManager.GetString("SupplierNameTooLong", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Supplier phone number is too long. Maximum length is 50 characters..
+        /// </summary>
+        public static string SupplierPhoneNumberTooLong {
+            get {
+                return ResourceManager.GetString("SupplierPhoneNumberTooLong", resourceCulture);
             }
         }
     }

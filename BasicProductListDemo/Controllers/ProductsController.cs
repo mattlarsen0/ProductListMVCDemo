@@ -420,5 +420,230 @@ namespace ProductListMVCDemo.Controllers
 
             return Json(responseModel);
         }
+
+        [HttpPost]
+        public ActionResult AddSupplier(AddSupplierModel model)
+        {
+            bool addedSupplier;
+            string errorMessage;
+            Supplier formSupplierData = null;
+
+            try
+            {
+                if (model.IsValid(out errorMessage))
+                {
+                    using (ProductListContext productContext = new ProductListContext())
+                    {
+                        // insert the supplier
+                        productContext.AddSupplier(model.Name,
+                                                   model.PhoneNumber);
+
+                        productContext.SaveChanges();
+                    }
+
+                    addedSupplier = true;
+                }
+                else
+                {
+                    // save form data for when we return
+                    formSupplierData = new Supplier
+                    {
+                        SupplierID = -1,
+                        Name = model.Name,
+                        PhoneNumber = model.PhoneNumber
+                    };
+
+                    addedSupplier = false;
+                }
+            }
+            catch (Exception e)
+            {
+                addedSupplier = false;
+                errorMessage = Errors.GenericMVCInternalError;
+                ErrorLog.LogError(e);
+            }
+
+            ActionResult result;
+
+            if (addedSupplier)
+            {
+                // Added supplier, return to list
+                ProductListModel viewModel = new ProductListModel
+                {
+                    AddedOrUpdatedProduct = true
+                };
+
+                result = RedirectToAction("Index", viewModel);
+            }
+            else
+            {
+                // Error, show message
+                AddUpdateSupplierViewModel viewModel = AddUpdateSupplierViewModel.GetModel(formSupplierData, errorMessage);
+                result = View("AddUpdateSupplier", viewModel);
+            }
+
+            return result;
+        }
+        
+        public ViewResult AddUpdateSupplier(AddUpdateSupplierModel model)
+        {
+            string errorMessage;
+            Supplier supplierToUpdate = null;
+
+            try
+            {
+                if (model.IsValid(out errorMessage))
+                {
+                    // If we're updating a supplier
+                    if (model.SupplierID.HasValue)
+                    {
+                        using (ProductListContext productContext = new ProductListContext())
+                        {
+                            supplierToUpdate = productContext.Suppliers.FirstOrDefault(s => s.SupplierID == model.SupplierID);
+                        }
+                    }
+                }
+            }
+            catch (Exception e)
+            {
+                errorMessage = Errors.GenericMVCInternalError;
+                ErrorLog.LogError(e);
+            }
+
+            ViewResult viewResult;
+
+            if (errorMessage != null)
+            {
+                // Error, show the message
+                ProductListViewModel viewModel;
+                using (ProductListContext productContext = new ProductListContext())
+                {
+                    viewModel = ProductListViewModel.GetModel(productContext, errorMessage: errorMessage);
+                }
+
+                viewResult = View("Index", viewModel);
+            }
+            else
+            {
+                // Load the Add/Update view
+                AddUpdateSupplierViewModel viewModel = null;
+
+                viewModel = AddUpdateSupplierViewModel.GetModel(supplierToUpdate);
+                viewResult = View(viewModel);
+            }
+
+            return viewResult;
+        }
+
+        [HttpPost]
+        public JsonResult RemoveSupplier(RemoveSupplierModel model)
+        {
+            RemoveSupplierJsonModel responseModel = new RemoveSupplierJsonModel();
+
+            try
+            {
+                ProductListViewModel partialViewModel;
+                using (ProductListContext productContext = new ProductListContext())
+                {
+                    Supplier supplierToRemove = productContext.Suppliers.FirstOrDefault(s => s.SupplierID == model.SupplierID);
+
+                    if (supplierToRemove != null)
+                    {
+                        // Remove any products associated with the supplier
+                        foreach (ProductBase product in productContext.AllProducts.Where(p => p.SupplierID == supplierToRemove.SupplierID))
+                        {
+                            product.Removed = true;
+                        }
+
+                        // Remove the supplier
+                        supplierToRemove.Removed = true;
+
+                        productContext.SaveChanges();
+                    }
+
+                    responseModel.SuppliersRemain = productContext.Suppliers.Count(s => !s.Removed) > 0;
+
+                    // create the model so we can render the new version of the table
+                    partialViewModel = ProductListViewModel.GetModel(productContext);
+                }
+
+                responseModel.Success = true;
+                // render the table
+                responseModel.Content = MvcHelper.RenderControllerPartialViewToString(this, "_SupplierListTable", partialViewModel);
+            }
+            catch (Exception e)
+            {
+                responseModel.Success = false;
+                responseModel.Content = Errors.GenericMVCInternalError;
+                ErrorLog.LogError(e);
+            }
+
+            return Json(responseModel);
+        }
+
+        [HttpPost]
+        public ActionResult UpdateSupplier(UpdateSupplierModel model)
+        {
+            bool updatedSupplier;
+            string errorMessage;
+            Supplier formSupplierData = null;
+
+            try
+            {
+                if (model.IsValid(out errorMessage))
+                {
+                    using (ProductListContext productContext = new ProductListContext())
+                    {
+                        // update the supplier
+                        productContext.UpdateSupplier(model.SupplierID,
+                                                      model.Name,
+                                                      model.PhoneNumber);
+
+                        productContext.SaveChanges();
+                    }
+
+                    updatedSupplier = true;
+                }
+                else
+                {
+                    // save form data for when we return
+                    formSupplierData = new Supplier
+                    {
+                        SupplierID = model.SupplierID,
+                        Name = model.Name,
+                        PhoneNumber = model.PhoneNumber
+                    };
+
+                    updatedSupplier = false;
+                }
+            }
+            catch (Exception e)
+            {
+                updatedSupplier = false;
+                errorMessage = Errors.GenericMVCInternalError;
+                ErrorLog.LogError(e);
+            }
+
+            ActionResult result;
+
+            if (updatedSupplier)
+            {
+                // Updated product, return to list
+                ProductListModel viewModel = new ProductListModel
+                {
+                    AddedOrUpdatedProduct = true
+                };
+
+                result = RedirectToAction("Index", viewModel);
+            }
+            else
+            {
+                // Error, show message
+                AddUpdateSupplierViewModel viewModel = AddUpdateSupplierViewModel.GetModel(formSupplierData, errorMessage);
+                result = View("AddUpdateSupplier", viewModel);
+            }
+
+            return result;
+        }
     }
 }

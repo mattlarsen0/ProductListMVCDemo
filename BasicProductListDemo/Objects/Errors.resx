@@ -120,6 +120,9 @@
   <data name="CannotFindProduct" xml:space="preserve">
     <value>The current product could not be found. Please refresh your page and try again.</value>
   </data>
+  <data name="CannotFindSupplier" xml:space="preserve">
+    <value>The current supplier could not be found. Please refresh your page and try again.</value>
+  </data>
   <data name="GenericMVCInternalError" xml:space="preserve">
     <value>There was an error with your request. Support has been notified.</value>
   </data>
@@ -149,5 +152,14 @@
   </data>
   <data name="ProductsNegativeYearOfRelease" xml:space="preserve">
     <value>Year of release must be greater than zero.</value>
+  </data>
+  <data name="SupplierEmptyName" xml:space="preserve">
+    <value>You must enter a supplier name.</value>
+  </data>
+  <data name="SupplierNameTooLong" xml:space="preserve">
+    <value>Supplier name is too long. Maximum length is 50 characters.</value>
+  </data>
+  <data name="SupplierPhoneNumberTooLong" xml:space="preserve">
+    <value>Supplier phone number is too long. Maximum length is 50 characters.</value>
   </data>
 </root>

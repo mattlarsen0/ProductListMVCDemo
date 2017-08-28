@@ -20,6 +20,8 @@ namespace ProductListMVCDemo.Objects.DAL
 
         public DbSet<ProductBase> AllProducts { get; set; }
 
+        public DbSet<Supplier> Suppliers { get; set; }
+
         public void AddGameProduct(string name, decimal price, int quantity, GameProductType gameType, int yearOfRelease, int RecommendedAge)
         {
             GameProduct newProduct = new GameProduct
@@ -75,6 +77,28 @@ namespace ProductListMVCDemo.Objects.DAL
                 productToUpdate.Quantity = quantity;
                 productToUpdate.Year = year;
                 productToUpdate.Color = color;
+            }
+        }
+
+        public void AddSupplier(string name, string phoneNumber)
+        {
+            Supplier supplier = new Supplier
+            {
+                Name = name,
+                PhoneNumber = phoneNumber
+            };
+
+            Suppliers.Add(supplier);
+        }
+
+        public void UpdateSupplier(int supplierID, string name, string phoneNumber)
+        {
+            Supplier supplierToUpdate = Suppliers.FirstOrDefault(s => s.SupplierID == supplierID);
+
+            if (supplierToUpdate != null)
+            {
+                supplierToUpdate.Name = name;
+                supplierToUpdate.PhoneNumber = phoneNumber;
             }
         }
     }

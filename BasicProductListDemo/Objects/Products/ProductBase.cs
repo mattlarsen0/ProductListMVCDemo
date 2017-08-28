@@ -5,6 +5,7 @@ using System.Linq;
 using System.Web;
 using System.ComponentModel;
 using ProductListMVCDemo.Objects.Enums;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace ProductListMVCDemo.Objects.Products
 {
@@ -26,6 +27,11 @@ namespace ProductListMVCDemo.Objects.Products
         [Required]
         [DefaultValue(false)]
         public bool Removed { get; set; }
+
+        public int SupplierID { get; set; }
+
+        [ForeignKey("SupplierID")]
+        public virtual Supplier Supplier { get; set; }
 
         public virtual string GetAdditionalInformation()
         {

@@ -1,0 +1,43 @@
+﻿@model ProductListMVCDemo.Models.AddUpdateSupplierViewModel
+@using ProductListMVCDemo.Objects.Enums;
+@using ProductListMVCDemo.Objects.Products;
+
+@{
+    string addOrUpdateText;
+    if (Model.IsUpdate)
+    {
+        ViewBag.Title = "Update Supplier";
+        addOrUpdateText = "Update";
+    }
+    else
+    {
+        ViewBag.Title = "Add Supplier";
+        addOrUpdateText = "Add";
+    }
+}
+
+<h2>@addOrUpdateText Supplier</h2>
+
+<div class="addUpdate">
+    @if (!string.IsNullOrEmpty(Model.ErrorMessage))
+    {
+        <div class="errorMsg">
+            @Model.ErrorMessage
+        </div>
+    }
+    @using (Html.BeginForm(Model.FormAction, "Products"))
+    {
+        if (Model.IsUpdate)
+        {
+            <input name="SupplierID" type="hidden" value="@Model.Supplier.SupplierID" />
+        }
+        <div class="inputOption">
+            <label>Name:<input name="Name" type="text" value="@(Model.Supplier?.Name)" maxlength="50" /></label>
+        </div>
+        <div class="inputOption">
+            <label>Phone Number:<input name="PhoneNumber" type="text" value="@(Model.Supplier?.PhoneNumber)" maxlength="50" /></label>
+        </div>
+        <a class="button" href="~/">Back</a>
+        <input type="submit" />
+    }
+</div>

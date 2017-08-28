@@ -1,0 +1,36 @@
+﻿@model ProductListMVCDemo.Models.ProductListViewModel
+@using ProductListMVCDemo.Objects.Products;
+
+@if (Model.Suppliers.Count > 0)
+{
+    <tr>
+        <th>Name</th>
+        <th>Phone Number</th>
+        <th>Remove</th>
+    </tr>
+    foreach (Supplier supplier in Model.Suppliers)
+    {
+        <tr>
+            <td><a href="~/Products/AddUpdateSupplier?SupplierID=@supplier.SupplierID">@supplier.Name</a></td>
+            <td>
+                @if (supplier.PhoneNumber == null)
+                {
+                    @:N/A
+                }
+                else
+                {
+                    @supplier.PhoneNumber
+                }
+            </td>
+            <td class="removeItem" data-supplier-id="@supplier.SupplierID"><img class="removeIcon" src="~/Content/Icons/close-circled.png" /></td>
+        </tr>
+    }
+}
+else
+{
+    <tr>
+        <td>
+            No Suppliers Exist
+        </td>
+    </tr>
+}

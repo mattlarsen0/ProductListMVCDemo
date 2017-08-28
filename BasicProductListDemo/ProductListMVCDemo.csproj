@@ -159,15 +159,21 @@
     <Compile Include="Models\AddCarProductModel.cs" />
     <Compile Include="Models\AddGameProductModel.cs" />
     <Compile Include="Models\AddProductBaseModel.cs" />
+    <Compile Include="Models\AddSupplierModel.cs" />
     <Compile Include="Models\AddUpdateProductModel.cs" />
     <Compile Include="Models\AddUpdateProductViewModel.cs" />
+    <Compile Include="Models\AddUpdateSupplierModel.cs" />
+    <Compile Include="Models\AddUpdateSupplierViewModel.cs" />
     <Compile Include="Models\BasicResponseModel.cs" />
     <Compile Include="Models\IActionModel.cs" />
     <Compile Include="Models\ProductListModel.cs" />
     <Compile Include="Models\RemoveProductModel.cs" />
+    <Compile Include="Models\RemoveSupplierJsonModel.cs" />
+    <Compile Include="Models\RemoveSupplierModel.cs" />
     <Compile Include="Models\UpdateCarProdutModel.cs" />
     <Compile Include="Models\UpdateGameProductModel.cs" />
     <Compile Include="Models\UpdateProductBaseModel.cs" />
+    <Compile Include="Models\UpdateSupplierModel.cs" />
     <Compile Include="Objects\DAL\ProductListContext.cs" />
     <Compile Include="Objects\Enums\GameProductType.cs" />
     <Compile Include="Objects\Enums\ProductType.cs" />
@@ -191,6 +197,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\ProductListViewModel.cs" />
+    <Compile Include="Objects\Products\Supplier.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -240,6 +247,12 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Products\_ProductListTable.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Products\AddUpdateSupplier.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Products\_SupplierListTable.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

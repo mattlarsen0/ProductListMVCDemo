@@ -11,6 +11,8 @@ namespace ProductListMVCDemo.Models
 {
     public class ProductListViewModel
     {
+        public List<Supplier> Suppliers { get; set; }
+
         public List<ProductBase> AllProducts { get; set; }
 
         public ProductBase MostExpensiveProduct { get; set; }
@@ -35,6 +37,8 @@ namespace ProductListMVCDemo.Models
         public static ProductListViewModel GetModel(ProductListContext productContext, bool addedProduct = false, string errorMessage = null)
         {
             ProductListViewModel model = new ProductListViewModel();
+            model.Suppliers = productContext.Suppliers.Where(s => !s.Removed).ToList();
+
             List<ProductBase> allProductsList = productContext.AllProducts.Where(p => !p.Removed).ToList();
 
             // Get products in a single list to find min/max values

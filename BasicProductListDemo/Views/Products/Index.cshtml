@@ -6,30 +6,48 @@
 }
 
 <div>
-    <h1>Current Products:</h1>
+    <h1>Current Suppliers:</h1>
     <div>
-        <table id="productListTable" class="dataTable">
+        <table id="supplierListTable" class="dataTable">
             @{
-                Html.RenderPartial("_ProductListTable", Model);
+                Html.RenderPartial("_SupplierListTable", Model);
             }
         </table>
     </div>
-    <h3>Add New Product</h3>
-    <div class="addProductButtons">
-        @using (Html.BeginForm("AddUpdateProduct", "Products"))
-        {
-            <div>
-                <label>
-                    Type:
-                    <select name="productType">
-                        <option value="@((int)ProductType.Game)">Game</option>
-                        <option value="@((int)ProductType.Car)">Car</option>
-                    </select>
-                </label>
-            </div>
-            <div>
-                <input type="submit" value="Add Product" />
-            </div>
-        }
+    <div class="buttonsContainer addSupplierButtons">
+        <h3>Add New Supplier</h3>
+        <a class="button" href="~/Products/AddUpdateSupplier">Add Supplier</a>
     </div>
+
+    @if (Model.Suppliers.Count > 0)
+    {
+        <div id="productsContainer">
+            <h1>Current Products:</h1>
+            <div>
+                <table id="productListTable" class="dataTable">
+                    @{
+                        Html.RenderPartial("_ProductListTable", Model);
+                    }
+                </table>
+            </div>
+            <div class="buttonsContainer addProductButtons">
+                <h3>Add New Product</h3>
+                @using (Html.BeginForm("AddUpdateProduct", "Products"))
+                {
+                    <div>
+                        <label>
+                            Type:
+                            <select name="productType">
+                                <option value="@((int)ProductType.Game)">Game</option>
+                                <option value="@((int)ProductType.Car)">Car</option>
+                            </select>
+                        </label>
+                    </div>
+                    <div>
+                        <input type="submit" value="Add Product" />
+                    </div>
+                }
+            </div>
+        </div>
+    }
 </div>
