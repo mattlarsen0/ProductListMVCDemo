@@ -30,6 +30,7 @@ namespace ProductListMVCDemo.Objects.Products
                 case GameProductType.BoardGame:
                     infoSb.Append("Board Game");
                     break;
+
                 case GameProductType.VideoGame:
                     infoSb.Append("Video Game");
                     break;

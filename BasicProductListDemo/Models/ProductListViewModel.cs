@@ -1,5 +1,4 @@
-﻿
-using ProductListMVCDemo.Objects.Products;
+﻿using ProductListMVCDemo.Objects.Products;
 using ProductListMVCDemo.Objects.DAL;
 using System;
 using System.Collections.Generic;

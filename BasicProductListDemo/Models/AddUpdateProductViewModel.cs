@@ -23,6 +23,7 @@ namespace ProductListMVCDemo.Models
         public string FormProductAction { get; set; }
 
         public List<Supplier> Suppliers { get; set; }
+
         /// <summary>
         /// Creates the view model for the add/update product page.
         /// </summary>
@@ -56,6 +57,7 @@ namespace ProductListMVCDemo.Models
                     }
                     model.ProductTypeStr = "Game";
                     break;
+
                 case ProductType.Car:
                     if (model.IsUpdate)
                     {

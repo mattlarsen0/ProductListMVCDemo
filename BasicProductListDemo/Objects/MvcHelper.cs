@@ -27,7 +27,7 @@ namespace ProductListMVCDemo.Objects
 
                 // render the view to viewWriter
                 viewResult.View.Render(viewContext, viewWriter);
-                
+
                 return viewWriter.ToString();
             }
         }

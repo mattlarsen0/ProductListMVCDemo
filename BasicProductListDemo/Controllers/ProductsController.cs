@@ -48,6 +48,7 @@ namespace ProductListMVCDemo.Controllers
                                 case ProductType.Game:
                                     productToUpdate = productContext.GameProducts.FirstOrDefault(p => p.ProductID == model.ProductID);
                                     break;
+
                                 case ProductType.Car:
                                     productToUpdate = productContext.CarProducts.FirstOrDefault(p => p.ProductID == model.ProductID);
                                     break;
@@ -109,7 +110,7 @@ namespace ProductListMVCDemo.Controllers
                     {
                         // insert the product
                         productContext.AddGameProduct(model.Name,
-                                                      model.Price, 
+                                                      model.Price,
                                                       model.Quantity,
                                                       model.GameType,
                                                       model.YearOfRelease,
@@ -165,7 +166,7 @@ namespace ProductListMVCDemo.Controllers
                 using (ProductListContext productContext = new ProductListContext())
                 {
                     viewModel = AddUpdateProductViewModel.GetModel(productContext, formProductData, ProductType.Game, errorMessage);
-                } 
+                }
 
                 result = View("AddUpdateProduct", viewModel);
             }
@@ -427,7 +428,7 @@ namespace ProductListMVCDemo.Controllers
                 using (ProductListContext productContext = new ProductListContext())
                 {
                     ProductBase productToRemove = productContext.AllProducts.FirstOrDefault(p => p.ProductID == model.ProductID);
-    
+
                     if (productToRemove != null)
                     {
                         productToRemove.Removed = true;
@@ -437,7 +438,7 @@ namespace ProductListMVCDemo.Controllers
 
                     // create the model so we can render the new version of the table
                     partialViewModel = ProductListViewModel.GetModel(productContext);
-                    
+
                     responseModel.Success = true;
                     // render the table
                     responseModel.Content = MvcHelper.RenderControllerPartialViewToString(this, "_ProductListTable", partialViewModel);
@@ -516,7 +517,7 @@ namespace ProductListMVCDemo.Controllers
 
             return result;
         }
-        
+
         public ViewResult AddUpdateSupplier(AddUpdateSupplierModel model)
         {
             string errorMessage;

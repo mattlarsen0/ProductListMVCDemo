@@ -16,7 +16,7 @@ namespace ProductListMVCDemo.Objects.Products
         [Required]
         [MaxLength(50)]
         public string Name { get; set; }
-        
+
         [MaxLength(50)]
         public string PhoneNumber { get; set; }
 
