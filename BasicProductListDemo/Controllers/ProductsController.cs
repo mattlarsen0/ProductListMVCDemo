@@ -80,7 +80,11 @@ namespace ProductListMVCDemo.Controllers
                 // Load the Add/Update view
                 AddUpdateProductViewModel viewModel = null;
 
-                viewModel = AddUpdateProductViewModel.GetModel(productToUpdate, model.ProductType);
+                using (ProductListContext productContext = new ProductListContext())
+                {
+                    viewModel = AddUpdateProductViewModel.GetModel(productContext, productToUpdate, model.ProductType);
+                }
+
                 viewResult = View(viewModel);
             }
 
@@ -109,7 +113,8 @@ namespace ProductListMVCDemo.Controllers
                                                       model.Quantity,
                                                       model.GameType,
                                                       model.YearOfRelease,
-                                                      model.RecommendedAge);
+                                                      model.RecommendedAge,
+                                                      model.SupplierID);
 
                         productContext.SaveChanges();
                     }
@@ -155,7 +160,13 @@ namespace ProductListMVCDemo.Controllers
             else
             {
                 // Error, show message
-                AddUpdateProductViewModel viewModel = AddUpdateProductViewModel.GetModel(formProductData, ProductType.Game, errorMessage);
+                AddUpdateProductViewModel viewModel;
+
+                using (ProductListContext productContext = new ProductListContext())
+                {
+                    viewModel = AddUpdateProductViewModel.GetModel(productContext, formProductData, ProductType.Game, errorMessage);
+                } 
+
                 result = View("AddUpdateProduct", viewModel);
             }
 
@@ -182,7 +193,8 @@ namespace ProductListMVCDemo.Controllers
                                                      model.Price,
                                                      model.Quantity,
                                                      model.Year,
-                                                     model.Color);
+                                                     model.Color,
+                                                     model.SupplierID);
 
                         productContext.SaveChanges();
                     }
@@ -227,7 +239,13 @@ namespace ProductListMVCDemo.Controllers
             else
             {
                 // Error, show the message
-                AddUpdateProductViewModel viewModel = AddUpdateProductViewModel.GetModel(formProductData, ProductType.Car, errorMessage);
+                AddUpdateProductViewModel viewModel;
+
+                using (ProductListContext productContext = new ProductListContext())
+                {
+                    viewModel = AddUpdateProductViewModel.GetModel(productContext, formProductData, ProductType.Car, errorMessage);
+                }
+
                 result = View("AddUpdateProduct", viewModel);
             }
 
@@ -257,7 +275,8 @@ namespace ProductListMVCDemo.Controllers
                                                          model.Quantity,
                                                          model.GameType,
                                                          model.YearOfRelease,
-                                                         model.RecommendedAge);
+                                                         model.RecommendedAge,
+                                                         model.SupplierID);
 
                         productContext.SaveChanges();
                     }
@@ -303,7 +322,13 @@ namespace ProductListMVCDemo.Controllers
             else
             {
                 // Error, show message
-                AddUpdateProductViewModel viewModel = AddUpdateProductViewModel.GetModel(formProductData, ProductType.Game, errorMessage);
+                AddUpdateProductViewModel viewModel;
+
+                using (ProductListContext productContext = new ProductListContext())
+                {
+                    viewModel = AddUpdateProductViewModel.GetModel(productContext, formProductData, ProductType.Game, errorMessage);
+                }
+
                 result = View("AddUpdateProduct", viewModel);
             }
 
@@ -332,7 +357,8 @@ namespace ProductListMVCDemo.Controllers
                                                         model.Price,
                                                         model.Quantity,
                                                         model.Year,
-                                                        model.Color);
+                                                        model.Color,
+                                                        model.SupplierID);
 
                         productContext.SaveChanges();
                     }
@@ -377,7 +403,13 @@ namespace ProductListMVCDemo.Controllers
             else
             {
                 // Error, show message
-                AddUpdateProductViewModel viewModel = AddUpdateProductViewModel.GetModel(formProductData, ProductType.Car, errorMessage);
+                AddUpdateProductViewModel viewModel;
+
+                using (ProductListContext productContext = new ProductListContext())
+                {
+                    viewModel = AddUpdateProductViewModel.GetModel(productContext, formProductData, ProductType.Car, errorMessage);
+                }
+
                 result = View("AddUpdateProduct", viewModel);
             }
 

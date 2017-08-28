@@ -12,6 +12,8 @@ namespace ProductListMVCDemo.Models
 
         public string Color { get; set; }
 
+        public int SupplierID { get; set; }
+
         public override bool IsValid(out string errorMessage)
         {
             // check base validation
@@ -28,6 +30,11 @@ namespace ProductListMVCDemo.Models
                 else if (string.IsNullOrEmpty(Color))
                 {
                     errorMessage = Errors.ProductsEmptyColor;
+                    isValid = false;
+                }
+                else if (SupplierID < 0)
+                {
+                    errorMessage = Errors.CannotFindSupplier;
                     isValid = false;
                 }
             }

@@ -22,7 +22,7 @@ namespace ProductListMVCDemo.Objects.DAL
 
         public DbSet<Supplier> Suppliers { get; set; }
 
-        public void AddGameProduct(string name, decimal price, int quantity, GameProductType gameType, int yearOfRelease, int RecommendedAge)
+        public void AddGameProduct(string name, decimal price, int quantity, GameProductType gameType, int yearOfRelease, int recommendedAge, int supplierID)
         {
             GameProduct newProduct = new GameProduct
             {
@@ -31,13 +31,14 @@ namespace ProductListMVCDemo.Objects.DAL
                 Quantity = quantity,
                 GameType = gameType,
                 YearOfRelease = yearOfRelease,
-                RecommendedAge = RecommendedAge
+                RecommendedAge = recommendedAge,
+                SupplierID = supplierID
             };
 
             GameProducts.Add(newProduct);
         }
 
-        public void AddCarProduct(string name, decimal price, int quantity, int year, string color)
+        public void AddCarProduct(string name, decimal price, int quantity, int year, string color, int supplierID)
         {
             CarProduct newProduct = new CarProduct
             {
@@ -45,13 +46,14 @@ namespace ProductListMVCDemo.Objects.DAL
                 Price = price,
                 Quantity = quantity,
                 Year = year,
-                Color = color
+                Color = color,
+                SupplierID = supplierID
             };
 
             CarProducts.Add(newProduct);
         }
 
-        public void UpdateGameProduct(int productID, string name, decimal price, int quantity, GameProductType gameType, int yearOfRelease, int recommendedAge)
+        public void UpdateGameProduct(int productID, string name, decimal price, int quantity, GameProductType gameType, int yearOfRelease, int recommendedAge, int supplierID)
         {
             GameProduct productToUpdate = GameProducts.FirstOrDefault(p => p.ProductID == productID);
 
@@ -63,10 +65,11 @@ namespace ProductListMVCDemo.Objects.DAL
                 productToUpdate.GameType = gameType;
                 productToUpdate.YearOfRelease = yearOfRelease;
                 productToUpdate.RecommendedAge = recommendedAge;
+                productToUpdate.SupplierID = supplierID;
             }
         }
 
-        internal void UpdateCarProduct(int productID, string name, decimal price, int quantity, int year, string color)
+        internal void UpdateCarProduct(int productID, string name, decimal price, int quantity, int year, string color, int supplierID)
         {
             CarProduct productToUpdate = CarProducts.FirstOrDefault(p => p.ProductID == productID);
 
@@ -77,6 +80,7 @@ namespace ProductListMVCDemo.Objects.DAL
                 productToUpdate.Quantity = quantity;
                 productToUpdate.Year = year;
                 productToUpdate.Color = color;
+                productToUpdate.SupplierID = supplierID;
             }
         }
 

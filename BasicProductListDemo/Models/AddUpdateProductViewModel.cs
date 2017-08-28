@@ -1,4 +1,5 @@
-﻿using ProductListMVCDemo.Objects.Enums;
+﻿using ProductListMVCDemo.Objects.DAL;
+using ProductListMVCDemo.Objects.Enums;
 using ProductListMVCDemo.Objects.Products;
 using System;
 using System.Collections.Generic;
@@ -21,6 +22,7 @@ namespace ProductListMVCDemo.Models
 
         public string FormProductAction { get; set; }
 
+        public List<Supplier> Suppliers { get; set; }
         /// <summary>
         /// Creates the view model for the add/update product page.
         /// </summary>
@@ -31,7 +33,7 @@ namespace ProductListMVCDemo.Models
         /// <param name="productType">Type of the product being created or modified</param>
         /// <param name="isErorr">Error string to display on the page. Set when posting back.</param>
         /// <returns>The generated view model</returns>
-        public static AddUpdateProductViewModel GetModel(ProductBase product, ProductType productType, string errorMessage = null)
+        public static AddUpdateProductViewModel GetModel(ProductListContext productContext, ProductBase product, ProductType productType, string errorMessage = null)
         {
             AddUpdateProductViewModel model = new AddUpdateProductViewModel();
 
@@ -39,6 +41,7 @@ namespace ProductListMVCDemo.Models
             model.Product = product;
             model.ProductType = productType;
             model.ErrorMessage = errorMessage;
+            model.Suppliers = productContext.Suppliers.Where(s => !s.Removed).ToList();
 
             switch (model.ProductType)
             {

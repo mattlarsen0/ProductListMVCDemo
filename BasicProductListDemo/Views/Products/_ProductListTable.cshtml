@@ -6,6 +6,7 @@
     <tr>
         <th>Name</th>
         <th>Type</th>
+        <th>Supplier</th>
         <th>Price</th>
         <th>Quantity</th>
         <th>Additional</th>
@@ -16,6 +17,7 @@
         <tr>
             <td><a href="~/Products/AddUpdateProduct?ProductID=@product.ProductID&ProductType=@((int)product.GetProductType())">@product.Name</a></td>
             <td>@product.GetProductTypeString()</td>
+            <td>@product.Supplier.Name</td>
             <td>@product.Price</td>
             <td>@product.Quantity</td>
             <td>@product.GetAdditionalInformation()</td>

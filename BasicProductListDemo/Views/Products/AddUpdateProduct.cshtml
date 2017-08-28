@@ -87,6 +87,24 @@
                 </div>
                 break;
         }
+        <div class="inputOption">
+            <label>
+                Supplier: 
+                <select name="SupplierID">
+                    @foreach (Supplier supplier in Model.Suppliers)
+                    {
+                        if (Model.Product?.SupplierID == supplier.SupplierID)
+                        {
+                            <option value="@supplier.SupplierID" selected="selected">@supplier.Name</option>
+                        }
+                        else
+                        {
+                            <option value="@supplier.SupplierID">@supplier.Name</option>
+                        }
+                    }
+                </select>
+            </label>
+        </div>
         <a class="button" href="~/">Back</a>
         <input type="submit" />
     }
