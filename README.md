@@ -6,7 +6,7 @@ You may add a supplier and assign products to them.
 Some statistics to show LINQ usage will be displayed below and updated via AJAX when removing products and suppliers.
 
 ### Main Tables
-(http://i.imgur.com/h08MOA7.png)
+![Main Tables](http://i.imgur.com/gVXzvlR.png)
 
 ### Additional Data Tables
-(http://i.imgur.com/gVXzvlR.png)
+![Additional Tables](http://i.imgur.com/h08MOA7.png)
