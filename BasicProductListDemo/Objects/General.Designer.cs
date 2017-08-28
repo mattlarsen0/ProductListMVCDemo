@@ -61,11 +61,11 @@ namespace ProductListMVCDemo.Objects {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Successfully added the product..
+        ///   Looks up a localized string similar to Successfully added!.
         /// </summary>
-        public static string AddedProductSuccess {
+        public static string AddedSuccess {
             get {
-                return ResourceManager.GetString("AddedProductSuccess", resourceCulture);
+                return ResourceManager.GetString("AddedSuccess", resourceCulture);
             }
         }
     }

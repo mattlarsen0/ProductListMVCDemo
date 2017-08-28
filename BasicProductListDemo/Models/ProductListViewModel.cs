@@ -22,9 +22,18 @@ namespace ProductListMVCDemo.Models
 
         public ProductBase LeastQuantityProduct { get; set; }
 
-        public bool IsError { get; private set; }
+        public bool IsErrorMessage { get; set; }
 
-        public string Message { get; private set; }
+        public string Message { get; set; }
+
+        public Supplier MostProductSupplier { get; set; }
+
+        public Supplier LeastProductSupplier { get; set; }
+
+        /// <summary>
+        /// Dictionary of total supplier value (price * quantity), Keyed by supplier id
+        /// </summary>
+        public Dictionary<int, decimal> SupplierProductValue { get; set; }
 
         /// <summary>
         /// Gets the view model for the main product list
@@ -45,19 +54,34 @@ namespace ProductListMVCDemo.Models
             IEnumerable<ProductBase> allProductsOrderedByQuantity = allProductsList.OrderBy(p => p.Quantity);
 
             model.AllProducts = allProductsList;
-            model.MostExpensiveProduct = allProductsOrderedByPrice.FirstOrDefault();
-            model.LeastExpensiveProduct = allProductsOrderedByPrice.LastOrDefault();
-            model.MostQuantityProduct = allProductsOrderedByQuantity.FirstOrDefault();
-            model.LeastQuantityProduct = allProductsOrderedByQuantity.LastOrDefault();
-            model.IsError = false;
+            model.MostExpensiveProduct = allProductsOrderedByPrice.LastOrDefault();
+            model.LeastExpensiveProduct = allProductsOrderedByPrice.FirstOrDefault();
+            model.MostQuantityProduct = allProductsOrderedByQuantity.LastOrDefault();
+            model.LeastQuantityProduct = allProductsOrderedByQuantity.FirstOrDefault();
+
+            // lookup supplier with most products
+            IEnumerable<int> supplierIDsOrderedByProductCount = from p in allProductsList
+                                                                group p by p.SupplierID into g
+                                                                orderby g.Count() descending
+                                                                select g.Key;
+
+            int mostProductSupplierID = supplierIDsOrderedByProductCount.FirstOrDefault();
+            int leastProductSupplierID = supplierIDsOrderedByProductCount.LastOrDefault();
+
+            model.MostProductSupplier = model.Suppliers.FirstOrDefault(s => s.SupplierID == mostProductSupplierID);
+            model.LeastProductSupplier = model.Suppliers.FirstOrDefault(s => s.SupplierID == leastProductSupplierID);
+
+            model.SupplierProductValue = allProductsList.GroupBy(p => p.SupplierID)
+                                                        .ToDictionary(g => g.Key, g => g.Sum(p => p.Quantity * p.Price));
 
             if (addedProduct)
             {
-                model.Message = General.AddedProductSuccess;
+                model.IsErrorMessage = false;
+                model.Message = General.AddedSuccess;
             }
             else
             {
-                model.IsError = true;
+                model.IsErrorMessage = true;
                 model.Message = errorMessage;
             }
 

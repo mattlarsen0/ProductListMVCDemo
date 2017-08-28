@@ -1,5 +1,5 @@
 ﻿body {
-    padding: 0 20px;
+    padding: 0 20px 20px 20px;
     font-family: 'Open Sans', sans-serif;
 }
 
@@ -9,32 +9,32 @@
     border: 1px solid #000;
 }
 
-.dataTable tr{
-    padding: 5px;
-}
+    .dataTable tr {
+        padding: 5px;
+    }
 
-.dataTable td {
-    padding: 5px 10px;
-    border: 1px solid #000;
-    text-overflow: ellipsis;
-    overflow: hidden;
-    max-width: 300px;
-}
+    .dataTable td {
+        padding: 5px 10px;
+        border: 1px solid #000;
+        text-overflow: ellipsis;
+        overflow: hidden;
+        max-width: 300px;
+    }
 
-.dataTable th {
-    padding: 12px 8px;
-    border: 1px solid #000;
-}
+    .dataTable th {
+        padding: 12px 8px;
+        border: 1px solid #000;
+    }
 
-.dataTable tr:nth-child(even) {
-    padding: 0;
-    margin: 0;
-    background: #A2DAFF;
-}
+    .dataTable tr:nth-child(even) {
+        padding: 0;
+        margin: 0;
+        background: #A2DAFF;
+    }
 
-.dataTable th {
-    text-align: left;
-}
+    .dataTable th {
+        text-align: left;
+    }
 
 .removeIcon {
     max-width: 20px;
@@ -51,13 +51,13 @@
     margin: 10px 0;
 }
 
-.addUpdate .inputOption input {
-    margin-left: 10px;
-}
+    .addUpdate .inputOption input {
+        margin-left: 10px;
+    }
 
-.addUpdate .inputOption.shortNum input {
-    width: 50px;
-}
+    .addUpdate .inputOption.shortNum input {
+        width: 50px;
+    }
 
 a.button, input[type=button], input[type=submit] {
     height: 35px;
@@ -79,20 +79,33 @@ a.button, input[type=button], input[type=submit] {
     font-family: 'Open Sans', sans-serif;
 }
 
-a.button:hover, input[type=button]:hover, input[type=submit]:hover {
-    background: #10abe5;
-}
+    a.button:hover, input[type=button]:hover, input[type=submit]:hover {
+        background: #10abe5;
+    }
 
-a.button:visited {
-    text-decoration: inherit;
-    color: inherit;
-    cursor: auto;
+    a.button:visited {
+        text-decoration: inherit;
+        color: inherit;
+        cursor: auto;
+    }
+
+.errorMsg, .successMessage {
+    display: inline-block;
+    padding: 10px;
+    border: 1px solid #000;
+    margin-top: 5px;
 }
 
 .errorMsg {
     background: #ff3d3d;
-    border: 1px solid #000;
-    display: inline-block;
-    padding: 10px;
     color: #000;
+}
+
+.tableSpacer {
+    height: 10px;
+}
+
+.successMessage {
+    display: inline-block;
+    background: #16f644;
 }

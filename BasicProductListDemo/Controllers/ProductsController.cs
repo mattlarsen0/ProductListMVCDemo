@@ -420,7 +420,7 @@ namespace ProductListMVCDemo.Controllers
         [HttpPost]
         public JsonResult RemoveProduct(RemoveProductModel model)
         {
-            BasicResponseModel responseModel = new BasicResponseModel();
+            RemoveProductResponseModel responseModel = new RemoveProductResponseModel();
 
             try
             {
@@ -440,8 +440,11 @@ namespace ProductListMVCDemo.Controllers
                     partialViewModel = ProductListViewModel.GetModel(productContext);
 
                     responseModel.Success = true;
+                    responseModel.ProductsRemain = productContext.AllProducts.Count(p => !p.Removed) > 0;
+
                     // render the table
                     responseModel.Content = MvcHelper.RenderControllerPartialViewToString(this, "_ProductListTable", partialViewModel);
+                    responseModel.AdditionalDataTables = MvcHelper.RenderControllerPartialViewToString(this, "_AdditionalDataTables", partialViewModel);
                 }
             }
             catch (Exception e)
@@ -595,6 +598,7 @@ namespace ProductListMVCDemo.Controllers
                     }
 
                     responseModel.SuppliersRemain = productContext.Suppliers.Count(s => !s.Removed) > 0;
+                    responseModel.ProductsRemain = productContext.AllProducts.Count(p => !p.Removed) > 0;
 
                     // create the model so we can render the new version of the table
                     partialViewModel = ProductListViewModel.GetModel(productContext);
@@ -603,6 +607,7 @@ namespace ProductListMVCDemo.Controllers
                 responseModel.Success = true;
                 // render the table
                 responseModel.Content = MvcHelper.RenderControllerPartialViewToString(this, "_SupplierListTable", partialViewModel);
+                responseModel.AdditionalDataTables = MvcHelper.RenderControllerPartialViewToString(this, "_AdditionalDataTables", partialViewModel);
             }
             catch (Exception e)
             {

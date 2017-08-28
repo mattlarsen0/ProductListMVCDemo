@@ -18,7 +18,7 @@
             <td><a href="~/Products/AddUpdateProduct?ProductID=@product.ProductID&ProductType=@((int)product.GetProductType())">@product.Name</a></td>
             <td>@product.GetProductTypeString()</td>
             <td>@product.Supplier.Name</td>
-            <td>@product.Price</td>
+            <td>@product.Price.ToString("C2")</td>
             <td>@product.Quantity</td>
             <td>@product.GetAdditionalInformation()</td>
             <td class="removeItem" data-product-id="@product.ProductID"><img class="removeIcon" src="~/Content/Icons/close-circled.png" /></td>

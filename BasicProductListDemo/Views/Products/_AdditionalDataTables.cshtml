@@ -1,0 +1,58 @@
+﻿@model ProductListMVCDemo.Models.ProductListViewModel
+
+@if (Model.AllProducts.Count > 0)
+{
+    <div>
+        <h3>Additional Supplier Data</h3>
+        <table class="dataTable">
+            <tr>
+                <th></th>
+                <th>Name</th>
+            </tr>
+            <tr>
+                <td>Most Product Quantity Supplier</td>
+                <td>@Model.MostProductSupplier.Name</td>
+            </tr>
+            <tr>
+                <td>Least Product Quantity Supplier</td>
+                <td>@Model.LeastProductSupplier.Name</td>
+            </tr>
+        </table>
+        <h3>Additional Product Data</h3>
+        <table class="dataTable">
+            <tr>
+                <th></th>
+                <th>Name</th>
+                <th>Price</th>
+            </tr>
+            <tr>
+                <td>Most Expensive Product</td>
+                <td>@Model.MostExpensiveProduct.Name</td>
+                <td>@Model.MostExpensiveProduct.Price.ToString("C2")</td>
+            </tr>
+            <tr>
+                <td>Least Expensive Product</td>
+                <td>@Model.LeastExpensiveProduct.Name</td>
+                <td>@Model.LeastExpensiveProduct.Price.ToString("C2")</td>
+            </tr>
+        </table>
+        <div class="tableSpacer"></div>
+        <table class="dataTable">
+            <tr>
+                <th></th>
+                <th>Name</th>
+                <th>Quantity</th>
+            </tr>
+            <tr>
+                <td>Most Quantity Product</td>
+                <td>@Model.MostQuantityProduct.Name</td>
+                <td>@Model.MostQuantityProduct.Quantity</td>
+            </tr>
+            <tr>
+                <td>Least Quantity Product</td>
+                <td>@Model.LeastQuantityProduct.Name</td>
+                <td>@Model.LeastQuantityProduct.Quantity</td>
+            </tr>
+        </table>
+    </div>
+}

@@ -4,7 +4,17 @@
 @section Scripts {
     <script src="~/Scripts/ProductList.js"></script>
 }
-
+@if (Model.Message != null)
+{
+    if (Model.IsErrorMessage)
+    {
+        <div id="statusMessage" class="errorMsg">@Model.Message</div>
+    }
+    else
+    {
+        <div id="statusMessage" class="successMessage">@Model.Message</div>
+    }
+}
 <div>
     <h1>Current Suppliers:</h1>
     <div>
@@ -49,5 +59,10 @@
                 }
             </div>
         </div>
+                        }
+</div>
+<div id="additionalData">
+    @{
+        Html.RenderPartial("_AdditionalDataTables");
     }
 </div>
